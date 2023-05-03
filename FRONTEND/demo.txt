@@ -1,0 +1,28 @@
+Landing page (Login,Signup)
+        |
+        |
+        |
+        ↓
+        Done -------->Services
+                        |
+                        |
+                        |
+                        |
+                        ↓
+                        Done --------> Select Clinic
+                                            |
+                                            |
+                                            |
+                                            |
+                                            ↓
+                                            Done ---------> Time slot
+                                                                |
+                                                                |
+                                                                |
+                                                                ↓
+                                                                Done ------>Payment
+                                                                                |
+                                                                                |
+                                                                                |
+                                                                                ↓
+                                                                                Done------>Make order Id(_Id,name,time,date,Clinic,services)
