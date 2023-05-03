@@ -1,21 +1,24 @@
+require('dotenv').config();
 const express=require('express');
-const {UserModel}=require('../models/UserModel');
 const userRouter=express.Router();
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
-require('dotenv').config();
+const {UserModel}=require('../models/UserModel');
+const {authenticator} = require('../middleware/authenticator');
+const {client}=require('../config/db');
 
 userRouter.post('/login',async(req,res)=>{
     let {email,password}=req.body;
     try {
-        let users=await UserModel.find({email});
-        if(users.length){
-            bcrypt.compare(password,users[0].password,(err,result)=>{
+        let user=await UserModel.findOne({email});
+        if(user){
+            bcrypt.compare(password,user.password,(err,result)=>{
                 if(result){
-                    let token=jwt.sign({userID: users[0]._id,username: users[0].username,email: users[0].email,mobile: users[0].mobile,age: users[0].age},process.env.normalKey);
-                    res.status(200).send({token});
+                    let token=jwt.sign({userID: user._id,username: user.username,email: user.email,mobile: user.mobile,age: user.age},process.env.normalKey);
+                    res.status(200).send({token,userData:user});
                 }
                 else{
+                    // console.log(err);
                     res.status(400).send('Wrong credentials..!');
                 }
             })
@@ -24,7 +27,7 @@ userRouter.post('/login',async(req,res)=>{
             res.status(404).send({msg:'No user found with this eamil! Please register first.'});
         }
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.sendStatus(400);
     }
 })
@@ -32,8 +35,8 @@ userRouter.post('/login',async(req,res)=>{
 userRouter.post('/signup',async(req,res)=>{
     let {username,email,password,mobile,age}=req.body;
     try {
-        const isFound=await UserModel.find({email});
-        if(isFound.length){
+        const isFound=await UserModel.findOne({email});
+        if(isFound){
             res.status(403).send('User already exist..!');
         }
         else{
@@ -50,9 +53,29 @@ userRouter.post('/signup',async(req,res)=>{
             })
         }
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.sendStatus(400);
     }
+})
+
+userRouter.get('/logout',async(req,res)=>{
+    let token = req.headers.authorization;
+    try {
+        if (token) {
+          await client.SADD("blackTokens", token);
+          res.status(200).send("Log out successfull");
+        } else {
+          res.status(401).send("Unauthorised...!");
+        }
+      }  catch (error) {
+        // console.log(error);
+        res.sendStatus(400);
+    }
+})
+
+// SECURED ROUTE
+userRouter.get('/slots',authenticator,async(req,res)=>{
+    res.send('SECURE ROUTED');
 })
 
 module.exports={userRouter}
