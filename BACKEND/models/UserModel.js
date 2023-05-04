@@ -11,6 +11,8 @@ const userSchema= new mongoose.Schema({
         default: "user",
         enum: ["user", "admin"],
     }
+    verified: Boolean
+
 },{versionKey:false});
 
 const UserModel=mongoose.model('users',userSchema);
