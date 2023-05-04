@@ -4,6 +4,8 @@ const userRouter=express.Router();
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 const {UserModel}=require('../models/UserModel');
+const {ClinicModel}=require('../models/ClinicModel');
+const {authorize}=require('../middleware/authorize');
 const {authenticator} = require('../middleware/authenticator');
 const {client}=require('../config/db');
 const {sendmail}=require("../services/mail")
@@ -40,7 +42,7 @@ userRouter.get("/allusers",async(req,res)=>{
 /// signup 
 
 userRouter.post('/signup',async(req,res)=>{
-    let {username,email,password,mobile,age, role}=req.body;
+    let {username,email,password,mobile,age,role}=req.body;
     try {
         const isFound=await UserModel.findOne({email});
         if(isFound){
@@ -53,8 +55,7 @@ userRouter.post('/signup',async(req,res)=>{
                     res.status(400).send({err:'Oops something went wrong..!'});
                 }
                 else{
-
-                    let user=new UserModel({username,email,password:hash,mobile,age,verified:false, role});
+                    let user=new UserModel({username,email,password:hash,mobile,age,verified:false,role});
                     await user.save();
                     const sotp= sendmail(email);
                     client.set(email+"otp",sotp,"ex",300);
@@ -103,7 +104,7 @@ userRouter.post('/login',async(req,res)=>{
     let {email,password}=req.body;
     try {
         let user=await UserModel.findOne({email});
-        if(user?.verified){
+        if(user){
             bcrypt.compare(password,user.password,(err,result)=>{
                 if(result){
                     let token=jwt.sign({userID: user._id,username: user.username,email: user.email,mobile: user.mobile,age: user.age, role: user.role},process.env.normalKey);
@@ -140,9 +141,28 @@ userRouter.get('/logout',async(req,res)=>{
     }
 })
 
-// SECURED ROUTE
-userRouter.get('/slots',authenticator,async(req,res)=>{
-    res.send('SECURE ROUTED');
+
+userRouter.get('/allclinic',authenticator,async(req,res)=>{
+    try {
+        const clinic=await ClinicModel.find();
+        res.status(200).send(clinic);
+    } 
+    catch (error) {
+       res.sendStatus(400); 
+    }
+})
+
+// ONLY FOR USERS HAVING ROLE===DENTIST //
+userRouter.post('/addclinic',authenticator,authorize(["dentist"]),async(req,res)=>{
+    const {dentistID,city,clinic,availibility}=req.body;
+    try {
+        const data=new ClinicModel({dentistID,city,clinic,availibility});
+        await data.save();
+        res.status(200).send({msg:"clinic added successfully"});
+    } 
+    catch (error) {
+       res.sendStatus(400); 
+    }
 })
 
 module.exports={userRouter}
