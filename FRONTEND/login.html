@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./signup.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="allheresignup">
+        <div class="login-box">
+            <p>Sign In</p>
+            <form>
+                <div class="user-box">
+                    <input id="Username" required="" name="" type="text">
+                    <label>Username</label>
+                </div>
+                <div class="user-box">
+                    <input id="password" required="" name="" type="password">
+                    <label>Password</label>
+                </div>
+                
+
+                <a id="buttonsignup" href="#">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Submit
+                </a>
+            </form>
+            <p>Already have an account? <a href="./signup.html" class="a2">Sign Up!</a></p>
+        </div>
+
+        <div class="sideimg">
+            <img src="https://cdn.dribbble.com/users/1913706/screenshots/4037918/dribbble-gif.gif"
+                alt=""><br><br>
+            <button onclick="openBMIForm()" class="somesignup">Check Your BMI</button>
+        </div>
+
+        <div id="bmi-form" style="display:none;">
+            <form>
+                <input type="number" placeholder="WEIGHT" id="weight" name="weight" required><br>
+
+                <!-- <label id="heightform" for="height">Height (cm):</label> -->
+                <input type="number" placeholder="HEIGHT" id="height" name="height" required><br>
+
+                <button type="button" class="btnforopen1" onclick="calculateBMI()">Calculate</button>
+                <button type="button" class="btnforopen2" onclick="closeBMIForm()">Close</button>
+
+                <p class="bmishow">Your BMI is: <span id="bmi-result"></span></p>
+            </form>
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    function openBMIForm() {
+        document.getElementById("bmi-form").style.display = "block";
+    }
+
+    function closeBMIForm() {
+        document.getElementById("bmi-form").style.display = "none";
+    }
+
+    function calculateBMI() {
+        const weight = document.getElementById("weight").value;
+        const height = document.getElementById("height").value / 100;
+        const bmi = weight / (height * height);
+        if (bmi < 18.5) {
+            document.getElementById("bmi-result").textContent = bmi.toFixed(1) + " (Underweight)"
+            document.getElementById("bmi-result").style.color = "red";
+        }
+        else if (bmi >= 18.5 && bmi < 25) {
+            document.getElementById("bmi-result").textContent = bmi.toFixed(1) + " (Normal)";
+            document.getElementById("bmi-result").style.color = "green";
+        }
+        else if (bmi >= 25 && bmi < 30) {
+            document.getElementById("bmi-result").textContent = bmi.toFixed(1) + " (Overweight)";
+            document.getElementById("bmi-result").style.color = "orange";
+        }
+        else if (bmi >= 30) {
+            document.getElementById("bmi-result").textContent = bmi.toFixed(1) + " (Obese)";
+            document.getElementById("bmi-result").style.color = "red";
+        } else {
+            document.getElementById("bmi-result").textContent = bmi.toFixed(1);
+            document.getElementById("bmi-result").style.color = "black";
+        }
+    }
+
+
+
+
+    //  Sign up process 
+
+    let buttonsignup = document.getElementById("buttonsignup");
+
+    let Username = document.getElementById("Username");
+    let password = document.getElementById("password");
+
+    buttonsignup.addEventListener("click", function () {
+
+        if(Username.value == "" || password.value == "") {
+            alert("Please fill all the fields");
+            return;
+        }
+
+        let payload = {
+            username : Username.value,
+            password : password.value
+        }
+        console.log(payload);
+
+    });
+
+
+
+</script>

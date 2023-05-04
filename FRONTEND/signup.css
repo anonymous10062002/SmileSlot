@@ -1,0 +1,387 @@
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    width: 400px;
+    padding: 40px;
+    margin: 20px auto;
+    transform: translate(-50%, -55%);
+    background: rgba(251, 251, 251, 0.9);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
+}
+
+.login-box p:first-child {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #000000;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.login-box .user-box {
+    position: relative;
+}
+
+.login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    background: transparent;
+}
+
+.login-box .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #000000;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label {
+    top: -20px;
+    left: 0;
+    color: #000000;
+    font-size: 12px;
+}
+
+.login-box form a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    font-weight: bold;
+    color: #000000;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 3px;
+    margin-left: 30%;
+}
+
+.login-box a:hover {
+    background: #000000;
+    color: #f1f1f1;
+    border-radius: 5px;
+}
+
+.login-box a span {
+    position: absolute;
+    display: block;
+}
+
+.login-box a span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #000000);
+    animation: btn-anim1 1.5s linear infinite;
+}
+
+@keyframes btn-anim1 {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+.login-box a span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #000000);
+    animation: btn-anim2 1.5s linear infinite;
+    animation-delay: .375s
+}
+
+@keyframes btn-anim2 {
+    0% {
+        top: -100%;
+    }
+
+    50%,
+    100% {
+        top: 100%;
+    }
+}
+
+.login-box a span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #000000);
+    animation: btn-anim3 1.5s linear infinite;
+    animation-delay: .75s
+}
+
+@keyframes btn-anim3 {
+    0% {
+        right: -100%;
+    }
+
+    50%,
+    100% {
+        right: 100%;
+    }
+}
+
+.login-box a span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #000000);
+    animation: btn-anim4 1.5s linear infinite;
+    animation-delay: 1.125s
+}
+
+@keyframes btn-anim4 {
+    0% {
+        bottom: -100%;
+    }
+
+    50%,
+    100% {
+        bottom: 100%;
+    }
+}
+
+.login-box p:last-child {
+    color: #000000;
+    font-size: 14px;
+}
+
+.login-box a.a2 {
+    color: #f00000;
+    text-decoration: none;
+}
+
+.login-box a.a2:hover {
+    background: transparent;
+    color: #aaa;
+    border-radius: 5px;
+}
+
+
+.sideimg {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    width: 400px;
+    padding: 40px;
+    margin: 20px auto;
+    transform: translate(-50%, -55%);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
+    border: 5px solid white;
+    background-color: #4070f4;
+}
+
+.sideimg img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.allheresignup {
+    position: relative;
+    width: 80%;
+    height: 700px;
+    background: url(../images/signup.jpg) no-repeat center center/cover;
+    overflow: hidden;
+    /* border: 2px solid black; */
+    margin: auto;
+    background-color: #4070f4;
+    border-radius: 50px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+}
+
+body {
+    background-color: #4070f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+/* BMI part styling */
+
+.somesignup {
+    width: 9em;
+    height: 3em;
+    border-radius: 30em;
+    font-size: 15px;
+    font-family: inherit;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    /* box-shadow: 6px 6px 12px #c5c5c5,
+        -6px -6px 12px #ffffff; */
+    margin-left: 30%;
+}
+
+.somesignup::before {
+    content: '';
+    width: 0;
+    height: 3em;
+    border-radius: 30em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to right, #0fd850 0%, #f9f047 100%);
+    transition: .5s ease;
+    display: block;
+    z-index: -1;
+    cursor: pointer;
+
+}
+
+.somesignup:hover::before {
+    width: 9em;
+}
+
+
+#bmi-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #5ed0e9;
+    padding: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#bmi-form #weigthform {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#weight {
+    /* width: 100px; */
+    height: 50px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    font-size: 20px;
+    text-align: center;
+    outline: none;
+}
+
+#height {
+    /* width: 100px; */
+    height: 50px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    font-size: 20px;
+    text-align: center;
+    outline: none;
+    margin-top: 10px;
+}
+
+.module {
+    position: fixed;
+    top: 7%;
+    margin: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: rgb(255, 255, 255);
+    display: none;
+    z-index: 999;
+    text-align: center;
+    font-weight: 550;
+    padding: 20px;
+}
+
+/* styles for the close button */
+.module-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btnforopen1 {
+    width: 100px;
+    height: 50px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    font-size: 20px;
+    text-align: center;
+    outline: none;
+    margin-top: 10px;
+    background-color: #0fd850;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btnforopen2 {
+    width: 100px;
+    height: 50px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    font-size: 20px;
+    text-align: center;
+    outline: none;
+    margin-top: 10px;
+    background-color: #ef4321;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+.bmishow {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+    /* background-color: #ef4321; */
+}
+#alertempty {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+    color: red;
+    /* background-color: #ef4321; */
+}
+
+
+@media only screen and (min-width: 412px) and (max-width: 991px) {
+    /* CSS styles for devices with screen width between 576px and 991px */
+
+    .sideimg {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 412px) {
+    /* CSS styles for devices with screen width up to 575px */
+
+    .sideimg {
+        display: none;
+    }
+ }
+ 
+
