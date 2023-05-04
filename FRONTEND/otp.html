@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OTP Verification Form</title>
+    <link rel="stylesheet" href="otp.css" />
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <i class="bx bxs-check-shield"></i>
+        </header>
+        <h4>Enter OTP Code</h4>
+        <form action="#">
+            <label for="">Email</label>
+            <textarea name="" id="emailhere" cols="25" rows="1"></textarea><br>
+            <label for="">OTP</label><br>
+            <div class="input-field">
+                <input type="number" />
+                <input type="number" disabled />
+                <input type="number" disabled />
+                <input type="number" disabled />
+            </div>
+            <button id="verifyotp">Verify OTP</button>
+        </form>
+    </div>
+    
+</body>
+
+</html>
+
+<script>
+
+    const inputs = document.querySelectorAll("input"),
+        button = document.querySelector("button");
+    inputs.forEach((input, index1) => {
+        input.addEventListener("keyup", (e) => {
+            const currentInput = input,
+                nextInput = input.nextElementSibling,
+                prevInput = input.previousElementSibling;
+
+            if (currentInput.value.length > 1) {
+                currentInput.value = "";
+                return;
+            }
+            if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
+                nextInput.removeAttribute("disabled");
+                nextInput.focus();
+            }
+            if (e.key === "Backspace") {
+                inputs.forEach((input, index2) => {
+                    if (index1 <= index2 && prevInput) {
+                        input.setAttribute("disabled", true);
+                        input.value = "";
+                        prevInput.focus();
+                    }
+                });
+            }
+            if (!inputs[3].disabled && inputs[3].value !== "") {
+                button.classList.add("active");
+                return;
+            }
+            button.classList.remove("active");
+        });
+    });
+
+    window.addEventListener("load", () => inputs[0].focus());
+
+
+    let verifyotp = document.getElementById("verifyotp");
+    let emailhere = document.getElementById("emailhere");
+
+    verifyotp.addEventListener("click", () => {
+        if (emailhere.value == "") {
+            alert("Please enter your email");
+        } else {
+            let otp = "";
+            inputs.forEach((input) => {
+                otp += input.value;
+            });
+            
+            let data = {
+                email: emailhere.value,
+                otp: otp
+            }
+
+            console.log(data);
+            fetch("http://localhost:3000/verifyotp", {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then((res) => {
+                return res.json();
+            }).then((data) => {
+                if (data.status == 200) {
+                    alert("OTP verified successfully");
+                    window.location.href = "./login.html";
+                } else {
+                    alert("OTP verification failed");
+                }
+            })
+        }
+    });
+
+</script>
