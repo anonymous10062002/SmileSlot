@@ -1,0 +1,273 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* .logodiv {
+
+    
+} */
+
+.logodiv img {
+    width: 160px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    /* background-color: #2b1a12; */
+    background-image: linear-gradient(163deg, #2b1a12 0%, #6a3922 100%);
+    color: white;
+    padding-top: 10px;
+    /* make bottom box shaddow */
+    box-shadow: 0px 15px 15px 0px rgba(0, 0, 0, 0.2);
+
+}
+
+.ultags {
+    display: flex;
+
+}
+
+.ultags li {
+    text-decoration: none;
+    list-style-type: none;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 10px;
+}
+
+.ultags li:hover {
+    background-color: white;
+    border-radius: 10px;
+    color: #4070f4;
+    cursor: pointer;
+    
+}
+
+
+.leftsidenav {
+    align-items: center;
+    margin-top: 12px;
+}
+
+
+#btnlogin {
+    background-color: #ffffff;
+    color: rgb(53, 6, 241);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+#btnlogin:hover {
+    background-color: rgb(241, 53, 6);
+    color: white;
+}
+
+.bigdiv {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.leftdiv {
+    width: 70%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.rightdiv {
+    width: 30%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* Scroler css */
+
+
+.image-scroller {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.scroll-container {
+    display: flex;
+    transition: transform 0.3s ease-out;
+    scroll-behavior: smooth;
+}
+
+.scroll-container img {
+    width: 100%;
+    height: auto;
+}
+
+.left-scroll,
+.right-scroll {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.left-scroll {
+    left: 0;
+}
+
+.right-scroll {
+    right: 0;
+}
+
+.bigdiv {
+    padding: 5px;
+    border: 3px solid #f6560c;
+    /* Bootom box shodow  */
+    box-shadow: 0px 15px 15px 0px rgba(3, 92, 112, 0.2);
+}
+
+
+/* ------------------- */
+
+.moreitem {
+    height: 200px;
+    width: 100%;
+  
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    /* justify-content:space-between; */
+
+}
+
+.itemherediv {
+    border: 2px solid rgb(255, 255, 255);
+    width: 16%;
+    background-color: #2b1a12;
+    border-radius: 10%;
+    height: 100%;
+    margin: auto;
+    padding: 10px;
+    background-image: linear-gradient(163deg, #2b1a12 0%, #6a3922 100%);
+}
+
+.itemherediv:hover {
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+}
+
+.toothimage {
+    font-size:70px;
+    margin: 5px;
+    margin-left:35%;
+    margin-top: 10px;
+}
+
+.toothimage1{
+    font-size:70px;
+    margin: 5px;
+    margin-left:30%;
+    margin-top: 10px;
+}
+.valuehome {
+    font-size: 30px;
+    text-align: center;
+    margin: auto;
+    font-weight: 700;
+}
+
+.deschome {
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 30%;
+}
+
+/* content */
+
+.contenthome {
+    width: 90%;
+    display: flex;
+    margin: auto;
+    margin-top: 60px;
+    height: 400px;
+    margin-bottom: 60px;
+    background-color: #e49a33;
+    border-radius: 10px;
+    /* box shadow all sides */
+    
+}
+
+.leftcontenthome {
+    width: 40%;
+    margin: auto;
+    background-color: #f0f4f2;
+}
+.rightcontenthomt {
+    width: 40%;
+    margin: auto;
+    padding: 30px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top: 70px;
+    color: #481504;
+    background-color: white;
+    border-radius: 50px;
+    box-shadow: 0px 15px 15px 0px rgba(0, 0, 0, 0.2);
+}
+
+.headsmile {
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+
+}
+
+.parasmile {
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.youtubevideo {
+    width: 98%;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+/* sym */
+
+.symptomshome {
+
+    width: 90%;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.headsym {
+    text-align: center;
+    font-weight: 400;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.herelinestart {
+    width: 100%;
+    display: flex;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.herelinestartdiv {
+    width: 12%;
+    margin: auto;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    padding: 10px;
+    border-radius: 20px;
+}

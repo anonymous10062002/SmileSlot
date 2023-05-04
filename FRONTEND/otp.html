@@ -71,7 +71,7 @@
         });
     });
 
-    window.addEventListener("load", () => inputs[0].focus());
+    // window.addEventListener("load", () => inputs[0].focus());
 
 
     let verifyotp = document.getElementById("verifyotp");
@@ -92,7 +92,7 @@
             }
 
             console.log(data);
-            fetch("http://localhost:3000/verifyotp", {
+            fetch("http://localhost:4000/users/verifyuser", {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
@@ -101,12 +101,14 @@
             }).then((res) => {
                 return res.json();
             }).then((data) => {
-                if (data.status == 200) {
-                    alert("OTP verified successfully");
+                console.log(data)
+                if (data.status = "success") {
                     window.location.href = "./login.html";
                 } else {
                     alert("OTP verification failed");
+                    alert(data.status);
                 }
+                console.log(data)
             })
         }
     });
