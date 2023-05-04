@@ -1,0 +1,97 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+
+#overlay{
+    width: 100%;
+    background-image: url("https://clovedental.in/wp-content/uploads/2017/03/img_banner.jpg");
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+.input-form{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.input-form select{
+    width: 85%;
+    text-align: center;
+    height: 2rem;
+    outline: none;
+}
+
+.input-form label{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.input-form>div{
+    padding: 20px;
+    width: 30%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding-bottom: 250px;
+}
+
+.input-form input{
+    margin-bottom: 10px;
+}
+
+
+.input-form span{
+    background-color: #ff8001;
+    border-radius: 50%;
+    padding: 15px;
+    color: white;
+    margin-bottom: 30px;    
+    font-size: 27px;
+}
+
+.heading h1{
+    margin-top: 50px;
+    text-align: center;
+    color: #3c2519;
+}
+
+.heading span{
+    color: #ff8001;
+}
+
+.banner{
+    width: 100%;
+    display: flex;
+    background-color: #452c20;
+    margin-top: 100px;
+}
+
+.banner>div{
+    border: 1px solid black;
+}
+
+.banner>div{
+    width: 20%;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+}
+
+#personal-details input{
+    width: 100%;
+    outline: none;
+}
+
+#personal-details input[type="submit"]{
+    padding: 10px;
+    border: none;
+}
+
+
+
