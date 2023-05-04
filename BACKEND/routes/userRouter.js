@@ -14,7 +14,7 @@ userRouter.post('/login',async(req,res)=>{
         if(user){
             bcrypt.compare(password,user.password,(err,result)=>{
                 if(result){
-                    let token=jwt.sign({userID: user._id,username: user.username,email: user.email,mobile: user.mobile,age: user.age},process.env.normalKey);
+                    let token=jwt.sign({userID: user._id,username: user.username,email: user.email,mobile: user.mobile,age: user.age, role:user.role}, process.env.normalKey);
                     res.status(200).send({token,userData:user});
                 }
                 else{
@@ -33,7 +33,7 @@ userRouter.post('/login',async(req,res)=>{
 })
 
 userRouter.post('/signup',async(req,res)=>{
-    let {username,email,password,mobile,age}=req.body;
+    let {username,email,password,mobile,age, role}=req.body;
     try {
         const isFound=await UserModel.findOne({email});
         if(isFound){
@@ -46,7 +46,7 @@ userRouter.post('/signup',async(req,res)=>{
                     res.status(400).send('Oops something went wrong..!');
                 }
                 else{
-                    let user=new UserModel({username,email,password:hash,mobile,age});
+                    let user=new UserModel({username,email,password:hash,mobile,age, role});
                     await user.save();
                     res.status(200).send('Registered successfully');
                 }

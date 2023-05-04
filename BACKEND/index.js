@@ -4,12 +4,14 @@ const cors = require("cors");
 const {mongoDB}=require('./config/db');
 const {client}=require('./config/db');
 const {userRouter}=require('./routes/userRouter');
+const { adminRouter } = require("./routes/adminRouter");
 
 const app = express();
 
 app.use(express.json());
 app.use(cors({origin: "*"}));
 app.use("/users", userRouter);
+app.use("/admin", adminRouter);
 
 app.listen(process.env.port, async () => {
   try {
