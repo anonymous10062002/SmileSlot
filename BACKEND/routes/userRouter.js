@@ -24,16 +24,16 @@ userRouter.get("/allusers",async(req,res)=>{
                 }
                 else{
                     // console.log(err);
-                    res.status(400).send('Wrong credentials..!');
+                    res.status(400).send({err:'Wrong credentials..!'});
                 }
             })
         }
         else{
-            res.status(404).send({msg:'No user found with this eamil! Please register first.'});
+            res.status(404).send({err:'No user found with this eamil! Please register first.'});
         }
 
     } catch (error) {
-        res.send({msg:"something went wrong",status:"error"})
+        res.send({err:"something went wrong",status:"error"})
     }
 })
 
@@ -44,13 +44,13 @@ userRouter.post('/signup',async(req,res)=>{
     try {
         const isFound=await UserModel.findOne({email});
         if(isFound){
-            res.status(403).send('User already exist..!');
+            res.status(403).send({err:'User already exist..!'});
         }
         else{
             bcrypt.hash(password,4,async(err,hash)=>{
                 if(err){
                     console.log(err);
-                    res.status(400).send('Oops something went wrong..!');
+                    res.status(400).send({err:'Oops something went wrong..!'});
                 }
                 else{
 
@@ -64,7 +64,7 @@ userRouter.post('/signup',async(req,res)=>{
         }
     } catch (error) {
         // console.log(error);
-        res.send({msg:"Oops something went wrong..! ",status:"error"})
+        res.send({err:"Oops something went wrong..! ",status:"error"})
     }
 })
 
@@ -74,7 +74,7 @@ userRouter.post("/verifyuser",async(req,res)=>{
     const {email,otp}=req.body;
 
     if(email==undefined||otp==undefined){
-        return res.send({msg:"enter full details",status:"error"});
+        return res.send({err:"enter full details",status:"error"});
     }
 
     try{
@@ -88,11 +88,11 @@ userRouter.post("/verifyuser",async(req,res)=>{
         }
         else{
             await UserModel.findByIdAndDelete({_id:user_id})
-            return res.send({msg:"invalid otp",status:"error"})
+            return res.send({err:"invalid otp",status:"error"})
         }
     }
     catch(err){
-        res.send({msg:"Oops something went wrong..! ",status:"error"})
+        res.send({err:"Oops something went wrong..! ",status:"error"})
     }
     
 })
@@ -111,23 +111,18 @@ userRouter.post('/login',async(req,res)=>{
                 }
                 else{
                     // console.log(err);
-                    res.status(400).send('Wrong credentials..!');
+                    res.status(400).send({err:'Wrong credentials..!'});
                 }
             })
         }
         else{
-            res.status(404).send({msg:'No user found with this eamil! Please register first.'});
+            res.status(404).send({err:'No user found with this eamil! Please register first.'});
         }
     } catch (error) {
         // console.log(error);
         res.sendStatus(400);
     }
 })
-
-
-
-
-
 
 
 userRouter.get('/logout',async(req,res)=>{

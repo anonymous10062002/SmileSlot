@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const { adminAuth } = require("../middleware/adminAuth");
-const { authenticator } = require("../middleware/authenticator");
+// const { authenticator } = require("../middleware/authenticator");
 
 const { UserModel } = require("../models/UserModel");
 // const { bookingModel } = require("../models/booking.model");
