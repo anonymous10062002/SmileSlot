@@ -6,7 +6,13 @@ const userSchema= new mongoose.Schema({
     password: String,
     mobile: Number,
     age: Number,
+    role: {
+        type: String,
+        default: "user",
+        enum: ["user", "admin"],
+    }
     verified: Boolean
+
 },{versionKey:false});
 
 const UserModel=mongoose.model('users',userSchema);
