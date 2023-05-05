@@ -18,3 +18,12 @@ rightScroll.addEventListener('click', () => {
   const scrollPosition = images[currentIndex].offsetLeft;
   scrollContainer.style.transform = `translateX(-${scrollPosition}px)`;
 });
+
+
+// ON load window make that video in header start again and get the video by video tag
+
+window.onload = function () {
+  
+}
+
+
