@@ -125,6 +125,7 @@ userRouter.post('/login',async(req,res)=>{
     }
 })
 
+// logout
 
 userRouter.get('/logout',async(req,res)=>{
     let token = req.headers.authorization;
@@ -141,10 +142,22 @@ userRouter.get('/logout',async(req,res)=>{
     }
 })
 
-
-userRouter.get('/allclinic',authenticator,async(req,res)=>{
+// get all cities [city1, city2, city3, ....]
+userRouter.get('/allcities',authenticator,async(req,res)=>{
     try {
-        const clinic=await ClinicModel.find();
+        const cities=await ClinicModel.distinct("city");
+        res.status(200).send(cities);
+    } 
+    catch (error) {
+       res.sendStatus(400); 
+    }
+})
+
+// get clinics by city name [clinic1, clinic2, clinic3,....]
+userRouter.get('/clinic/:city',authenticator,async(req,res)=>{
+    const {city}=req.params;
+    try {
+        const clinic=await ClinicModel.find({city});
         res.status(200).send(clinic);
     } 
     catch (error) {
@@ -152,9 +165,22 @@ userRouter.get('/allclinic',authenticator,async(req,res)=>{
     }
 })
 
+// get all clinics 
+// userRouter.get('/allclinics',authenticator,authorize(["admin"]),async(req,res)=>{
+//     try {
+//         const clinics=await ClinicModel.distinct("clinic");
+//         res.status(200).send(clinics);
+//     } 
+//     catch (error) {
+//        res.sendStatus(400); 
+//     }
+// })
+
 // ONLY FOR USERS HAVING ROLE===DENTIST //
 userRouter.post('/addclinic',authenticator,authorize(["dentist"]),async(req,res)=>{
-    const {dentistID,city,clinic,availibility}=req.body;
+    const token=req.headers;
+    const {city,clinic,availibility}=req.body;
+    const dentistID=token.userID;
     try {
         const data=new ClinicModel({dentistID,city,clinic,availibility});
         await data.save();

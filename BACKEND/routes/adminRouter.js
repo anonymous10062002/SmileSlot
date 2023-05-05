@@ -7,6 +7,7 @@ const { adminAuth } = require("../middleware/adminAuth");
 
 const { UserModel } = require("../models/UserModel");
 // const { bookingModel } = require("../models/booking.model");
+const {ClinicModel}=require('../models/ClinicModel');
 
 const adminRouter = express.Router();
 
@@ -41,6 +42,17 @@ adminRouter.get("/getusers", adminAuth, async (req, res) => {
     res.send({ err: err.message });
   }
 });
+
+// get all clinics [clinic1,clinic2,clinic3.....]
+adminRouter.get('/allclinics',adminAuth,async(req,res)=>{
+    try {
+        const clinics=await ClinicModel.distinct("clinic");
+        res.status(200).send(clinics);
+    } 
+    catch (error) {
+       res.sendStatus(400); 
+    }
+})
 
 // adminRouter.post("/bookings", async (req, res) => {
 //   const { email, pass } = req.body;
