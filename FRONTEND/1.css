@@ -8,9 +8,46 @@ body {
     
 } */
 
+header {
+    height: 100vh;
+}
+
+video {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.btnleft {
+    width: auto;
+    position: absolute;
+    top: 50%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.btnleft:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    /* cursor: pointer; */
+}
+
+
+
+
 .logodiv img {
     width: 160px;
 }
+
+
 
 nav {
     display: flex;
@@ -21,7 +58,7 @@ nav {
     padding-top: 10px;
     /* make bottom box shaddow */
     box-shadow: 0px 15px 15px 0px rgba(0, 0, 0, 0.2);
-
+    /* position: fixed; */
 }
 
 .ultags {
@@ -42,7 +79,7 @@ nav {
     border-radius: 10px;
     color: #4070f4;
     cursor: pointer;
-    
+
 }
 
 
@@ -140,7 +177,7 @@ nav {
 .moreitem {
     height: 200px;
     width: 100%;
-  
+
     color: white;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -161,22 +198,25 @@ nav {
 }
 
 .itemherediv:hover {
-    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    background-image: linear-gradient(163deg, orange 0%, rgb(49, 210, 157) 100%);
+    color: black;
+    font-weight: 900;
 }
 
 .toothimage {
-    font-size:70px;
+    font-size: 70px;
     margin: 5px;
-    margin-left:35%;
+    margin-left: 35%;
     margin-top: 10px;
 }
 
-.toothimage1{
-    font-size:70px;
+.toothimage1 {
+    font-size: 70px;
     margin: 5px;
-    margin-left:30%;
+    margin-left: 30%;
     margin-top: 10px;
 }
+
 .valuehome {
     font-size: 30px;
     text-align: center;
@@ -202,7 +242,7 @@ nav {
     background-color: #e49a33;
     border-radius: 10px;
     /* box shadow all sides */
-    
+
 }
 
 .leftcontenthome {
@@ -210,6 +250,7 @@ nav {
     margin: auto;
     background-color: #f0f4f2;
 }
+
 .rightcontenthomt {
     width: 40%;
     margin: auto;
@@ -263,6 +304,7 @@ nav {
     margin-top: 15px;
     margin-bottom: 15px;
 }
+
 .herelinestartdiv {
     width: 12%;
     margin: auto;
@@ -270,4 +312,173 @@ nav {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
     padding: 10px;
     border-radius: 20px;
+}
+
+.herelinestartdiv:hover {
+    /* Make backgroung image gradient with combination of orange colour and red */
+    background-image: linear-gradient(163deg, orange 0%, rgb(49, 210, 157) 100%);
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+}
+
+
+#seemorehome {
+    padding: 15px;
+    border: none;
+    font-size: 18px;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    background-color: #f6560c;
+    color: white;
+    border-radius: 10px;
+}
+
+#seemorehome:hover {
+    background-color: #e7e2e0;
+    color: rgb(214, 131, 6);
+    border-radius: 10px;
+    box-shadow: 0px 15px 15px 0px rgba(3, 92, 112, 0.2);
+}
+
+.imagesbig {
+    margin-top: 20px;
+    width: 80%;
+    margin: auto;
+
+}
+
+.imagesbig img {
+    width: 100%;
+}
+
+.imagesmall {
+    margin-top: 50px;
+    width: 60%;
+    margin: auto;
+
+}
+
+.imagesmall img {
+    width: 100%;
+}
+
+.imagesmall:hover {
+    /* smooth zoom and smooth zoom out  */
+    transition: transform 0.3s ease-out;
+    transform: scale(1.1);
+
+}
+
+#patient {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* capital all words */
+    text-transform: uppercase;
+}
+
+
+/* Footer */
+
+
+footer {
+    /* background-color: #f5f5f5; */
+    background-image: linear-gradient(163deg, #2b1a12 0%, #6a3922 100%);
+    padding: 50px 0;
+    font-size: 14px;
+    color: #eeedec;
+    height: 300px;
+}
+
+footer h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #f1eeee;
+}
+
+footer h4:hover {
+    background-image: linear-gradient(163deg, rgb(49, 210, 157) 0%, orange 100%);
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 900;
+    color: black;
+    padding: 5px;
+    cursor: pointer;
+}
+
+footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+footer ul li {
+    padding: 5px 0;
+}
+
+.contact {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.contact p {
+    margin-top: 10px;
+    margin: auto;
+}
+
+footer ul li {
+    padding: 5px 0;
+    
+}
+
+footer ul li:hover {
+    background-image: linear-gradient(163deg, orange 0%, rgb(49, 210, 157) 100%);
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.contact {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.contact p {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.row {
+    margin-bottom: 20px;
+}
+
+.col-md-4 {
+    width: 25%;
+    float: left;
+    padding-right: 15px;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+.col-md-5 {
+    margin-top: -35px;
+    width: 25%;
+    float: left;
+    padding-right: 15px;
+    padding-left: 15px;
+    box-sizing: border-box;
 }
