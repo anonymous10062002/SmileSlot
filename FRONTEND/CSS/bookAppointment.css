@@ -4,6 +4,85 @@
     overflow-x: hidden;
 }
 
+.logodiv img {
+    width: 160px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    /* background-color: #2b1a12; */
+    background-image: linear-gradient(163deg, #2b1a12 0%, #6a3922 100%);
+    color: white;
+    padding-top: 10px;
+    /* make bottom box shaddow */
+    box-shadow: 0px 15px 15px 0px rgba(0, 0, 0, 0.2);
+
+}
+
+.ultags {
+    display: flex;
+
+}
+
+.ultags li {
+    text-decoration: none;
+    list-style-type: none;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 10px;
+}
+
+.ultags li:hover {
+    background-color: white;
+    border-radius: 10px;
+    color: #4070f4;
+    cursor: pointer;
+    
+}
+
+
+.leftsidenav {
+    align-items: center;
+    margin-top: 12px;
+}
+
+
+#btnlogin {
+    background-color: #ffffff;
+    color: rgb(53, 6, 241);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+#btnlogin:hover {
+    background-color: rgb(241, 53, 6);
+    color: white;
+}
+
+.bigdiv {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.leftdiv {
+    width: 70%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.rightdiv {
+    width: 30%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 #overlay{
     width: 100%;
     background-image: url("https://clovedental.in/wp-content/uploads/2017/03/img_banner.jpg");
@@ -37,7 +116,7 @@
     padding: 20px;
     width: 30%;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    padding-bottom: 250px;
+    padding-bottom: 160px;
 }
 
 .input-form input{
@@ -95,3 +174,56 @@
 
 
 
+
+.moreitem {
+    height: 200px;
+    width: 100%;
+  
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    /* justify-content:space-between; */
+
+}
+
+.itemherediv {
+    border: 2px solid rgb(255, 255, 255);
+    width: 16%;
+    background-color: #2b1a12;
+    border-radius: 10%;
+    height: 100%;
+    margin: auto;
+    padding: 10px;
+    background-image: linear-gradient(163deg, #2b1a12 0%, #6a3922 100%);
+}
+
+.itemherediv:hover {
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+}
+
+.toothimage {
+    font-size:70px;
+    margin: 5px;
+    margin-left:35%;
+    margin-top: 10px;
+}
+
+.toothimage1{
+    font-size:70px;
+    margin: 5px;
+    margin-left:30%;
+    margin-top: 10px;
+}
+.valuehome {
+    font-size: 30px;
+    text-align: center;
+    margin: auto;
+    font-weight: 700;
+}
+
+.deschome {
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 30%;
+}
