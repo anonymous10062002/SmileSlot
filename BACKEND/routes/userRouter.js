@@ -16,36 +16,34 @@ const {sendmail}=require("../services/mail")
 userRouter.get("/allusers",async(req,res)=>{
 
     try {
+        let allusers = await UserModel.find();
 
-        let user=await UserModel.findOne({email});
-        if(user){
-            bcrypt.compare(password,user.password,(err,result)=>{
-                if(result){
-                    let token=jwt.sign({userID: user._id,username: user.username,email: user.email,mobile: user.mobile,age: user.age, role:user.role}, process.env.normalKey);
-                    res.status(200).send({token,userData:user});
-                }
-                else{
-                    // console.log(err);
-                    res.status(400).send({err:'Wrong credentials..!'});
-                }
-            })
-        }
-        else{
-            res.status(404).send({err:'No user found with this eamil! Please register first.'});
-        }
-
+        res.send({allusers:allusers,status:"success"})
+        
     } catch (error) {
-        res.send({err:"something went wrong",status:"error"})
+        res.send({msg:"something went wrong",status:"error"})
     }
 })
 
 /// signup 
 
 userRouter.post('/signup',async(req,res)=>{
-    let {username,email,password,mobile,age,role}=req.body;
+    let {username,email,password,mobile,age, role}=req.body;
     try {
         const isFound=await UserModel.findOne({email});
+
+        if(isFound?.verified==false){
+            id=isFound._id
+            try {
+               
+                await UserModel.findByIdAndDelete({_id:id});
+               
+            } catch (error) {
+                console.log(error)
+            }
+        }
         if(isFound){
+           
             res.status(403).send({err:'User already exist..!'});
         }
         else{
@@ -55,7 +53,8 @@ userRouter.post('/signup',async(req,res)=>{
                     res.status(400).send({err:'Oops something went wrong..!'});
                 }
                 else{
-                    let user=new UserModel({username,email,password:hash,mobile,age,verified:false,role});
+
+                    let user=new UserModel({username,email,password:hash,mobile,age,verified:false, role});
                     await user.save();
                     const sotp= sendmail(email);
                     client.set(email+"otp",sotp,"ex",300);
@@ -104,11 +103,12 @@ userRouter.post('/login',async(req,res)=>{
     let {email,password}=req.body;
     try {
         let user=await UserModel.findOne({email});
-        if(user){
+        console.log(user?.verified)
+        if(user?.verified){
             bcrypt.compare(password,user.password,(err,result)=>{
                 if(result){
                     let token=jwt.sign({userID: user._id,username: user.username,email: user.email,mobile: user.mobile,age: user.age, role: user.role},process.env.normalKey);
-                    res.status(200).send({token,userData:user});
+                    res.status(200).send({msg:"login successfull",token:token});
                 }
                 else{
                     // console.log(err);
