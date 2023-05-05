@@ -13,17 +13,17 @@ const {sendmail}=require("../services/mail")
 
 /// get all users
 
-userRouter.get("/allusers",async(req,res)=>{
+// userRouter.get("/allusers",async(req,res)=>{
 
-    try {
-        let allusers = await UserModel.find();
+//     try {
+//         let allusers = await UserModel.find();
 
-        res.send({allusers:allusers,status:"success"})
+//         res.send({allusers:allusers,status:"success"})
         
-    } catch (error) {
-        res.send({msg:"something went wrong",status:"error"})
-    }
-})
+//     } catch (error) {
+//         res.send({msg:"something went wrong",status:"error"})
+//     }
+// })
 
 /// signup 
 
