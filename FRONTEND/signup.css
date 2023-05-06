@@ -196,7 +196,10 @@
     box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
     border-radius: 10px;
     border: 5px solid white;
-    background-color: #4070f4;
+    /* background-color: #4070f4; */
+    /* background-image: linear-gradient(163deg, #2b1a12 0%, #6a3922 100%); */
+    background-image: linear-gradient(to right,  #CADCFC 0%, #8AB6F9, #00246B 100%);
+
 }
 
 .sideimg img {
@@ -213,13 +216,18 @@
     overflow: hidden;
     /* border: 2px solid black; */
     margin: auto;
-    background-color: #4070f4;
+    /* background-color: #8AB6F9; */
+    background-image: linear-gradient(to right,  #00246B 0%, #8AB6F9, #CADCFC 100%);
+
+    
     border-radius: 50px;
     box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
 }
 
 body {
-    background-color: #4070f4;
+    background-color: #fbfbfb;
+    /* background-image: linear-gradient(163deg, #2b1a12 0%, #6a3922 100%); */
+
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -250,7 +258,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    background-image: linear-gradient(to right, #0fd850 0%, #f9f047 100%);
+    background-image: linear-gradient(to right,  #ef360c 0%, #bbf00d, #e48c11 100%);
     transition: .5s ease;
     display: block;
     z-index: -1;
@@ -367,6 +375,26 @@ body {
     /* background-color: #ef4321; */
 }
 
+#dentistsign {
+    color: red;
+    font-weight: 600;
+}
+
+#dentistinput {
+    margin-left: 10%;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
 
 @media only screen and (min-width: 412px) and (max-width: 991px) {
     /* CSS styles for devices with screen width between 576px and 991px */
@@ -384,4 +412,3 @@ body {
     }
  }
  
-

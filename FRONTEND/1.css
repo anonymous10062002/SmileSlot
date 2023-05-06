@@ -392,6 +392,7 @@ footer {
     font-size: 14px;
     color: #eeedec;
     height: 300px;
+    margin-bottom: 10px;
 }
 
 footer h4 {
@@ -481,4 +482,20 @@ footer ul li:hover {
     padding-right: 15px;
     padding-left: 15px;
     box-sizing: border-box;
+}
+
+#usernamehere {
+    background-color: white;
+    color: #2b1a12;
+    text-decoration: none;
+    list-style-type: none;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#usernamehere:hover {
+    background-color: #4070f4;
+    color: white;
 }

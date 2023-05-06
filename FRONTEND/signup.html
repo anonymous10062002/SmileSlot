@@ -31,10 +31,16 @@
                     <input id="mobile" required="" name="" type="text">
                     <label>Mobile No.</label>
                 </div>
+
                 <div class="user-box">
                     <input id="password" required="" name="" type="password">
                     <label>Password</label>
                 </div>
+
+
+                <label for="" id="dentistsign">Are you dentist ?</label><input id="dentistinput" type="checkbox"
+                    value="true">
+
 
 
                 <a id="buttonsignup" href="#">
@@ -127,6 +133,26 @@
     let mobile = document.getElementById("mobile");
     let password = document.getElementById("password");
 
+    let checkbox = document.getElementById("dentistinput")
+
+    // handle click event on checkbox
+
+    let role = "user"
+    checkbox.addEventListener('change', function () {
+        if (this.checked) {
+            role = "dentist"
+        }
+    });
+
+    checkbox.addEventListener('change', function () {
+        if (!this.checked) {
+            role = "user"
+        }
+    });
+
+
+
+
     let alertempty = document.getElementById("alertempty")
     buttonsignup.addEventListener("click", function () {
 
@@ -151,7 +177,8 @@
             email: email.value,
             age: age.value,
             mobile: mobile.value,
-            password: password.value
+            password: password.value,
+            role: role
         }
         console.log(payload);
 

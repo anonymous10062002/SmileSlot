@@ -1,16 +1,29 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<title>Checkbox Events</title>
 </head>
 <body>
-    <video loop="loop" autoplay playsinline muted  width="100%" height="830">
-        <source type="video/mp4" src="https://sculptperio.com/wp-content/uploads/2022/11/Dental.mp4" />
-        
-    </video>
+
+	<input type="checkbox" id="myCheckbox" value="myValue">
+
+	<script>
+		var checkbox = document.getElementById("myCheckbox");
+		
+		// Add "check" event
+		checkbox.addEventListener('change', function() {
+			if (this.checked) {
+				console.log("Checkbox is checked");
+			}
+		});
+		
+		// Add "uncheck" event
+		checkbox.addEventListener('change', function() {
+			if (!this.checked) {
+				console.log("Checkbox is unchecked");
+			}
+		});
+	</script>
+
 </body>
 </html>
