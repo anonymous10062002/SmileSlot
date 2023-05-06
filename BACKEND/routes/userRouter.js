@@ -5,6 +5,7 @@ const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 const {UserModel}=require('../models/UserModel');
 const {ClinicModel}=require('../models/ClinicModel');
+const {SlotModel}=require('../models/ClinicModel');
 const {authorize}=require('../middleware/authorize');
 const {authenticator} = require('../middleware/authenticator');
 const {client}=require('../config/db');
@@ -209,13 +210,35 @@ userRouter.get('/clinic/:city',authenticator,async(req,res)=>{
 
 // ONLY FOR USERS HAVING ROLE===DENTIST //
 userRouter.post('/addclinic',authenticator,authorize(["dentist"]),async(req,res)=>{
-    const token=req.headers;
-    const {city,clinic,availibility}=req.body;
-    const dentistID=token.userID;
+    const token=req.headers.authorization;
+    const {city,clinic}=req.body;
+    // const userID=token.userID;
     try {
-        const data=new ClinicModel({dentistID,city,clinic,availibility});
+        const data=new ClinicModel({userID,city,clinic,booked:[]});
         await data.save();
         res.status(200).send({msg:"clinic added successfully"});
+    } 
+    catch (error) {
+       res.sendStatus(400); 
+    }
+})
+
+//  BOOK APPOINTMENT
+
+userRouter.post('/bookslot',authenticator,async(req,res)=>{
+    const {userID,city,clinic,date}=req.body;  //userID need to be changed
+    try {
+        const clin=await ClinicModel.findOne({clinic});
+        const isBooked=clin.booked.includes(date);
+        if(isBooked){
+            res.status(400).send({msg:"already booked"});
+        }
+        else{
+            await ClinicModel.findOneAndUpdate({clinic},{$push:{booked:date}});
+            const slot=new SlotModel({userID,city,clinic,date});
+            await slot.save();
+            res.status(200).send({msg:"appointment  booked successfully"});
+        }
     } 
     catch (error) {
        res.sendStatus(400); 
