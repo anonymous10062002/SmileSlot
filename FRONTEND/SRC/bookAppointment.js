@@ -1,45 +1,39 @@
-const cityClinicForm = document.querySelector("#city-form");
-const dateForm = document.querySelector("#date-form");
-const personalDetail = document.querySelector("#personal-detail");
-const allData = new Array();
-
-cityClinicForm.addEventListener("submit", (e)=>{
+const appointmentForm = document.querySelector("form");
+appointmentForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const cityClinicData = {
-    city: document.getElementById("city").value,
-    clinic: document.getElementById("clinic").value
-  }
-  allData.push(cityClinicData.city)
-  allData.push(cityClinicData.clinic)
-})
+  const day = document.querySelector("#day").value;
+  const date = document.querySelector("#date").value;
+  const year = document.querySelector("#year").value;
+  const exact_date = year+":"+day+":"+date;
+  const userDetails = {
+    city: document.querySelector("#city").value,
+    clinic: document.querySelector("#clinic").value,
+    date: exact_date,
+    mobile_number: document.querySelector("#mobile-number").value,
+    name: document.querySelector("#name").value,
+    email: document.querySelector("#email").value,
+    text_msg: document.querySelector("#text-message").value,
+  };
 
-dateForm.addEventListener("submit", (e)=>{
-  e.preventDefault();
-  const dateData = {
-    day: document.getElementById("day").value,
-    date: document.getElementById("date").value,
-    year: document.getElementById("year").value
-  }
-  allData.push(dateData.day);
-  allData.push(dateData.date);
-  allData.push(dateData.year);
-})
+  appointmentData(
+    userDetails.city,
+    userDetails.clinic,
+    userDetails.date,
+    userDetails.mobile_number,
+    userDetails.name,
+    userDetails.email,
+    userDetails.text_msg
+  );
+});
 
-personalDetail.addEventListener("submit", (e)=>{
-  e.preventDefault();
-  const personalDetail = {
-    mobile: document.getElementById("mobile-number").value,
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    text_msg: document.getElementById("text-message").value
-  }
-  allData.push(personalDetail.mobile, personalDetail.name, personalDetail.email, personalDetail.text_msg)
-})
-
-
-const formData = (allData) => {
-  console.log(city, clinic);
-} 
-formData();
-
-
+const appointmentData = (
+  city,
+  clinic,
+  date,
+  mobile_number,
+  name,
+  email,
+  text_msg
+) => {
+  console.log(city, clinic, date, mobile_number, name, email, text_msg);
+};
