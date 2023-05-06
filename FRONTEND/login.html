@@ -7,22 +7,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./signup.css">
     <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/sweetalert/dist/sweetalert.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 
 <body>
+
     <div class="allheresignup">
+        <div class="module" id="cart-module">
+            <span></span>
+            <span class="module-close" onclick="closeModule()">&times;</span>
+        </div>
         <div class="login-box">
             <p>Sign In</p>
             <form>
                 <div class="user-box">
-                    <input id="Username" required="" name="" type="text">
-                    <label>Username</label>
+                    <input id="email" required="" name="" type="text">
+                    <label>Email</label>
                 </div>
                 <div class="user-box">
                     <input id="password" required="" name="" type="password">
                     <label>Password</label>
                 </div>
-                
+
+
 
                 <a id="buttonsignup" href="#">
                     <span></span>
@@ -36,8 +45,7 @@
         </div>
 
         <div class="sideimg">
-            <img src="https://cdn.dribbble.com/users/1913706/screenshots/4037918/dribbble-gif.gif"
-                alt=""><br><br>
+            <img src="https://cdn.dribbble.com/users/1913706/screenshots/4037918/dribbble-gif.gif" alt=""><br><br>
             <button onclick="openBMIForm()" class="somesignup">Check Your BMI</button>
         </div>
 
@@ -102,21 +110,72 @@
 
     let buttonsignup = document.getElementById("buttonsignup");
 
-    let Username = document.getElementById("Username");
+    let email = document.getElementById("email");
     let password = document.getElementById("password");
 
     buttonsignup.addEventListener("click", function () {
 
-        if(Username.value == "" || password.value == "") {
-            alert("Please fill all the fields");
+        if (email.value == "" || password.value == "") {
+            const module = document.getElementById('cart-module');
+            module.innerText = "Please fill all details !!"
+            module.style.display = 'block';
+            module.style.borderRadius = '20px';
+            module.style.backgroundColor = "red";
+
+            setTimeout(() => {
+                module.style.display = 'none';
+            }, 3000);
             return;
         }
 
         let payload = {
-            username : Username.value,
-            password : password.value
+            email: email.value,
+            password: password.value
         }
-        console.log(payload);
+        console.log(payload)
+        fetch("http://localhost:4000/users/login", {
+            method: "POST",
+            body: JSON.stringify(payload),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((res) => {
+            return res.json();
+        }).then((data) => {
+            console.log(data);
+            if (data.msg == "login successfull") {
+
+
+
+                if (data.user.role == "dentist") {
+                    swal(`Welcome Dentist ${data.user.username} 🤝`, data.msg, "success");
+                    setTimeout(() => {
+                        window.location.href = "./dentistpanel.html"
+                    }, 4000)
+
+                } else {
+                    swal(`Welcome ${data.user.username} 🤝`, data.msg, "success");
+                    setTimeout(() => {
+                        window.location.href = "./dentistpanel.html"
+                    }, 4000)
+                }
+
+            } else {
+                const module = document.getElementById('cart-module');
+                module.innerText = "Verify Your Details !!"
+                module.style.display = 'block';
+                module.style.borderRadius = '20px';
+                module.style.backgroundColor = "red";
+
+                setTimeout(() => {
+                    module.style.display = 'none';
+                }, 3000);
+            }
+
+        }).catch((err) => {
+            console.log(err);
+        })
+
 
     });
 

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="otp.css" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -77,7 +78,8 @@
     let verifyotp = document.getElementById("verifyotp");
     let emailhere = document.getElementById("emailhere");
 
-    verifyotp.addEventListener("click", () => {
+    verifyotp.addEventListener("click", (e) => {
+        e.preventDefault()
         if (emailhere.value == "") {
             alert("Please enter your email");
         } else {
@@ -103,7 +105,9 @@
             }).then((data) => {
                 console.log(data)
                 if (data.status = "success") {
+                    swal("Greetings 🤝", data.msg, "success");
                     window.location.href = "./login.html";
+
                 } else {
                     alert("OTP verification failed");
                     alert(data.status);
@@ -112,5 +116,7 @@
             })
         }
     });
+
+
 
 </script>
