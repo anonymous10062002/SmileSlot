@@ -5,7 +5,7 @@ const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 const {UserModel}=require('../models/UserModel');
 const {ClinicModel}=require('../models/ClinicModel');
-const {SlotModel}=require('../models/ClinicModel');
+const {SlotModel}=require('../models/SlotModel');
 const {authorize}=require('../middleware/authorize');
 const {authenticator} = require('../middleware/authenticator');
 const {client}=require('../config/db');
@@ -210,9 +210,8 @@ userRouter.get('/clinic/:city',authenticator,async(req,res)=>{
 
 // ONLY FOR USERS HAVING ROLE===DENTIST //
 userRouter.post('/addclinic',authenticator,authorize(["dentist"]),async(req,res)=>{
-    const token=req.headers.authorization;
-    const {city,clinic}=req.body;
-    // const userID=token.userID;
+    // const token=req.headers.authorization;
+    const {city,clinic,userID}=req.body;
     try {
         const data=new ClinicModel({userID,city,clinic,booked:[]});
         await data.save();
@@ -226,21 +225,25 @@ userRouter.post('/addclinic',authenticator,authorize(["dentist"]),async(req,res)
 //  BOOK APPOINTMENT
 
 userRouter.post('/bookslot',authenticator,async(req,res)=>{
-    const {userID,city,clinic,date}=req.body;  //userID need to be changed
+    // pass date in this format: "yyyy-MM-dd"
+    const {userID,city,clinic,date}=req.body; 
+    let d=new Date(date); 
+    let time=d.getTime();
     try {
-        const clin=await ClinicModel.findOne({clinic});
-        const isBooked=clin.booked.includes(date);
+        const clin=await ClinicModel.findOne({city,clinic});
+        const isBooked=clin.time.includes(time);
         if(isBooked){
-            res.status(400).send({msg:"already booked"});
+            res.status(400).send({msg:"Already booked...!"});
         }
         else{
-            await ClinicModel.findOneAndUpdate({clinic},{$push:{booked:date}});
-            const slot=new SlotModel({userID,city,clinic,date});
+            await ClinicModel.findOneAndUpdate({clinic},{$push:{time:time}});
+            const slot=new SlotModel({userID,city,clinic,time});
             await slot.save();
-            res.status(200).send({msg:"appointment  booked successfully"});
+            res.status(200).send({msg:"Appointment booked successfully"});
         }
     } 
     catch (error) {
+        console.log(error.message);
        res.sendStatus(400); 
     }
 })
