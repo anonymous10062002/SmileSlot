@@ -4,7 +4,7 @@ const slotSchema= new mongoose.Schema({
     userID: String,
     city: String,
     clinic: String,
-    date: [{type:Date}]
+    time: Number
 },{versionKey:false});
 
 const SlotModel=mongoose.model('slots',slotSchema);

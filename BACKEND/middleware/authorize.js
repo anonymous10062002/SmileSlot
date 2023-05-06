@@ -1,10 +1,11 @@
+const {UserModel}=require('../models/UserModel');
 const authorize=(roleArray)=>{
     
-    return (req,res,next)=>{
-        const user=res.body;
-        // console.log(user);
-        const userRole=user.role;
-        if(roleArray.includes(userRole)){
+    return async (req,res,next)=>{
+        const user=req.body;
+        const id=user.userID;
+        const userData=await UserModel.findById({_id:id});
+        if(roleArray.includes(userData.role)){
             next();
         }
         else{

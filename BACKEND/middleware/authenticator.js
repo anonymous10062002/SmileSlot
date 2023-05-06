@@ -17,7 +17,7 @@ const authenticator= async(req,res,next)=>{
                     }
                     else{
                         let userID=decoded.userID;
-                        req.body.userID=userID
+                        req.body.userID=userID;
                         next()
                     }
                     
