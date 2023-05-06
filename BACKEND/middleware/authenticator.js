@@ -3,7 +3,7 @@ const jwt=require('jsonwebtoken');
 const {client}=require('../config/db');
 
 const authenticator= async(req,res,next)=>{
-    const accessToken=req.headers.authorization;
+    const accessToken=req.headers.authorization?.split(" ")[1];
     try {
         if(accessToken){
             const isBlacklisted=await client.SISMEMBER('blackTokens',accessToken);
@@ -12,6 +12,9 @@ const authenticator= async(req,res,next)=>{
             }
             else{
                 jwt.verify(accessToken,process.env.normalKey,(err,decoded)=>{
+                    if(err){
+                        return res.send({msg:err.message,status:"error"})
+                    }
                     if(decoded){
                         res.body=decoded;
                         next();

@@ -103,12 +103,17 @@ userRouter.post('/login',async(req,res)=>{
     let {email,password}=req.body;
     try {
         let user=await UserModel.findOne({email});
-        console.log(user?.verified)
+        // console.log(user?.verified)
         if(user?.verified){
             bcrypt.compare(password,user.password,(err,result)=>{
                 if(result){
-                    let token=jwt.sign({userID: user._id,username: user.username,email: user.email,mobile: user.mobile,age: user.age, role: user.role},process.env.normalKey);
-                    res.status(200).send({msg:"login successfull",token:token,user});
+
+                    //let token=jwt.sign({userID: user._id,username: user.username,email: user.email,mobile: user.mobile,age: user.age, role: user.role},process.env.normalKey,{expiresIn:"1d"});
+                    let token=jwt.sign({userID: user._id},process.env.normalKey,{expiresIn:"1d"});
+                    let refresh_token=jwt.sign({userID: user._id},process.env.refreshKey,{expiresIn:"30d"});
+
+                    res.status(200).send({msg:"login successfull",token:token});
+
                 }
                 else{
                     // console.log(err);
@@ -123,6 +128,31 @@ userRouter.post('/login',async(req,res)=>{
         // console.log(error);
         res.sendStatus(400);
     }
+})
+
+
+/// refresh token
+
+userRouter.get("/refreshtoken",(req,res)=>{
+
+    const refreshtoken=req.headers.authorization?.split(" ")[1]
+
+    if(!refreshtoken){
+        return res.send({msg:"please login",status:"error"});
+    }
+
+    jwt.verify(token,process.env.refreshKey , function(err, decoded) {
+        if(err){
+            return res.send({msg:"please login"})
+        }else{
+            let userID=decoded.userID
+            const token = jwt.sign({userID:userID}, 'hush',{expiresIn:"1d"});
+            res.send({token:token,status:"success"});
+        }
+        
+      });
+    
+    
 })
 
 // logout
