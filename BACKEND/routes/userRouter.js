@@ -113,8 +113,7 @@ userRouter.post('/login',async(req,res)=>{
                     let token=jwt.sign({userID: user._id},process.env.normalKey,{expiresIn:"1d"});
                     let refresh_token=jwt.sign({userID: user._id},process.env.refreshKey,{expiresIn:"30d"});
 
-                    res.status(200).send({msg:"login successfull",token:token,status:"success"});
-
+                    res.status(200).send({msg:"login successfull",token:token,status:"success",user});
                 }
                 else{
                     // console.log(err);
@@ -228,7 +227,7 @@ userRouter.post('/bookslot',authenticator,async(req,res)=>{
     // pass date in this format: "yyyy-MM-dd"
     const {userID,city,clinic,date}=req.body; 
     let d=new Date(date); 
-    let time=d.getTime();
+    let time=d.getTime();  
     try {
         const clin=await ClinicModel.findOne({city,clinic});
         const isBooked=clin.time.includes(time);
