@@ -19,7 +19,7 @@ function sendmail(email){
       const mailOptions = {
         from: 'sauravrct101@gmail.com',
         to: user_email,
-        subject: 'Reset password',
+        subject: 'Verify email',
         text: `your otp is ${otp} valid till 5 min`
       };
       

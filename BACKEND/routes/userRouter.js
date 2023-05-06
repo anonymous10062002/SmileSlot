@@ -112,21 +112,22 @@ userRouter.post('/login',async(req,res)=>{
                     let token=jwt.sign({userID: user._id},process.env.normalKey,{expiresIn:"1d"});
                     let refresh_token=jwt.sign({userID: user._id},process.env.refreshKey,{expiresIn:"30d"});
 
-                    res.status(200).send({msg:"login successfull",token:token});
+                    res.status(200).send({msg:"login successfull",token:token,status:"success"});
 
                 }
                 else{
                     // console.log(err);
-                    res.status(400).send({err:'Wrong credentials..!'});
+                    res.status(400).send({msg:'Wrong credentials..!',status:"error"});
                 }
             })
         }
         else{
-            res.status(404).send({err:'No user found with this eamil! Please register first.'});
+            res.status(404).send({msg:'No user found with this eamil! Please register first.',status:"error"});
         }
     } catch (error) {
         // console.log(error);
-        res.sendStatus(400);
+        res.status(404).send({msg:'Something went wrong',status:"error"});
+        
     }
 })
 
