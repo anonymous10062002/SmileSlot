@@ -107,11 +107,13 @@ userRouter.post('/login',async(req,res)=>{
         if(user?.verified){
             bcrypt.compare(password,user.password,(err,result)=>{
                 if(result){
+
                     //let token=jwt.sign({userID: user._id,username: user.username,email: user.email,mobile: user.mobile,age: user.age, role: user.role},process.env.normalKey,{expiresIn:"1d"});
                     let token=jwt.sign({userID: user._id},process.env.normalKey,{expiresIn:"1d"});
                     let refresh_token=jwt.sign({userID: user._id},process.env.refreshKey,{expiresIn:"30d"});
 
                     res.status(200).send({msg:"login successfull",token:token});
+
                 }
                 else{
                     // console.log(err);
