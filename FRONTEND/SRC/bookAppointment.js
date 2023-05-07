@@ -1,4 +1,4 @@
-const token = localStorage.getItem("token");
+const token = localStorage.getItem("dentaltoken");
 const fetchCity = async () => {
   let res = await fetch("http://localhost:4000/users/allcities", {
     method:"GET",
