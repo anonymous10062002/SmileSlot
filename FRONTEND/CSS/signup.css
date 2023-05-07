@@ -198,7 +198,7 @@
     border: 5px solid white;
     /* background-color: #4070f4; */
     /* background-image: linear-gradient(163deg, #2b1a12 0%, #6a3922 100%); */
-    background-image: linear-gradient(to right,  #CADCFC 0%, #8AB6F9, #00246B 100%);
+    background-image: linear-gradient(to right, #CADCFC 0%, #8AB6F9, #00246B 100%);
 
 }
 
@@ -217,9 +217,9 @@
     /* border: 2px solid black; */
     margin: auto;
     /* background-color: #8AB6F9; */
-    background-image: linear-gradient(to right,  #00246B 0%, #8AB6F9, #CADCFC 100%);
+    background-image: linear-gradient(to right, #00246B 0%, #8AB6F9, #CADCFC 100%);
 
-    
+
     border-radius: 50px;
     box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
 }
@@ -258,7 +258,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    background-image: linear-gradient(to right,  #ef360c 0%, #bbf00d, #e48c11 100%);
+    background-image: linear-gradient(to right, #ef360c 0%, #bbf00d, #e48c11 100%);
     transition: .5s ease;
     display: block;
     z-index: -1;
@@ -367,6 +367,7 @@ body {
     margin-top: 10px;
     /* background-color: #ef4321; */
 }
+
 #alertempty {
     font-size: 14px;
     text-align: center;
@@ -382,10 +383,67 @@ body {
 
 #dentistinput {
     margin-left: 10%;
-    
+
 }
 
 
+.buttonadmin {
+    --color: #1686b6;
+    padding: 0.8em 1.7em;
+    background-color: transparent;
+    border-radius: .3em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .5s;
+    font-weight: 400;
+    font-size: 17px;
+    border: 1px solid;
+    font-family: inherit;
+    text-transform: uppercase;
+    color: var(--color);
+    z-index: 1;
+    display: block;
+    margin: auto;
+}
+
+.buttonadmin::before,
+.buttonadmin::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    background-color: var(--color);
+    transition: 1s ease;
+}
+
+.buttonadmin::before {
+    top: -1em;
+    left: -1em;
+}
+
+.buttonadmin::after {
+    left: calc(100% + 1em);
+    top: calc(100% + 1em);
+}
+
+.buttonadmin:hover::before,
+.buttonadmin:hover::after {
+    height: 410px;
+    width: 410px;
+}
+
+.buttonadmin:hover {
+    color: rgb(10, 25, 30);
+}
+
+.buttonadmin:active {
+    filter: brightness(.8);
+}
 
 
 
@@ -410,5 +468,4 @@ body {
     .sideimg {
         display: none;
     }
- }
- 
+}

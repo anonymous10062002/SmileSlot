@@ -22,8 +22,6 @@ rightScroll.addEventListener('click', () => {
 
 // ON load window make that video in header start again and get the video by video tag
 
-window.onload = function () {
-  
-}
+let usernamehere = document.getElementById("usernamehere")
 
-
+usernamehere.innerText = localStorage.getItem("dentalusername")

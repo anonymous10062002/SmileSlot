@@ -44,26 +44,40 @@
 
     </header>
 
+    <div class="module" id="cart-module">
+        <span></span>
+        <span class="module-close" onclick="closeModule()">&times;</span>
+    </div>
+
     <div id="container">
         <div id="leftdent">
             <form class="form">
-                <span class="signup">REGISTER YOUR CITY</span>
-                <input type="text" placeholder="ENTER YOUR CITY" class="form--input">
-                <input type="text" placeholder="ENTER YOUR CLINIC" class="form--input">
-                <input type="text" placeholder="CONFIRM CITY ^" class="form--input">
-                <div class="form--marketing">
+                <span class="signup">REGISTER YOUR CLINIC</span>
+                <input type="text" id="cityinput" placeholder="ENTER YOUR CITY" class="form--input" required>
+                <input type="text" id="clinicinput" placeholder="ENTER YOUR CLINIC" class="form--input" required>
+                <input type="text" id="cityinputreconfirm" placeholder="CONFIRM CITY ^" required class="form--input">
+                <div class="form--marketing" >
                     <input id="okayToEmail" type="checkbox">
                     <label for="okayToEmail" class="checkbox">
                         I want to join the newsletter
                     </label>
                 </div>
-                <button class="form--submit">
-                    Sign up
+                <button id="addclinic" class="form--submit">
+                    Add Clinic
                 </button>
             </form>
         </div>
         <div id="rightdent">
             <img src="https://wallpapercave.com/wp/wp2789220.jpg" alt="">
+        </div>
+    </div>
+
+    <div id="herebook">
+        <div id="herebookcity">
+
+        </div>
+        <div id="herebookclinc">
+
         </div>
     </div>
 
@@ -135,4 +149,5 @@
 </body>
 
 </html>
-<script src="./1.js"></script>
+<!-- <script src="../1.js"></script> -->
+<script src="../SRC/dentistpanel.js"></script>
