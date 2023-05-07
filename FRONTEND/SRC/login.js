@@ -82,13 +82,13 @@ buttonsignup.addEventListener("click", function () {
                 swal(`Welcome Dentist ${data.user.username} 🤝`, data.msg, "success");
                 setTimeout(() => {
                     window.location.href = "../Public/dentistpanel.html"
-                }, 4000)
+                }, 3000)
 
             } else {
                 swal(`Welcome ${data.user.username} 🤝`, data.msg, "success");
                 setTimeout(() => {
                     window.location.href = "../Public/after.html"
-                }, 4000)
+                }, 3000)
             }
 
         } else {

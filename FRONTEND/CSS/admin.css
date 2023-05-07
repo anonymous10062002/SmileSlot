@@ -177,3 +177,35 @@ section {
 .datatype :hover {
     cursor: pointer;
 }
+
+.deleteClinicBtn {
+    border: none;
+    background-color: transparent;
+    font-family: "Montserrat";
+    margin-left: 60px;
+}
+
+.deleteClinicBtn:hover{
+    color: red;
+    cursor: pointer;
+}
+
+.deleteClcBtn {
+    border: none;
+    background-color: transparent;
+    font-family: "Montserrat";
+    margin-left: 60px;
+}
+
+#h4 button {
+    border: none;
+    background-color: transparent;
+    padding: 20px;
+    font-family: "Montserrat";
+    font-size: larger;
+}
+
+#h4 button:hover {
+   cursor: pointer;
+   color: red;
+}
