@@ -11,10 +11,13 @@ const fetchCity = async () => {
    console.log(cityData)
   const citySelect = document.querySelector("#city");
   cityData.map((city)=>{
-    citySelect.innerHTML = `
-    <option value="">Select City</option>
-    <option value="${city}">${city}</option>
-    `
+
+    let option = new Option(city,city);
+    citySelect.add(option,undefined)
+    // citySelect.innerHTML = `
+    // <option value="">Select City</option>
+    // <option value="${city}">${city}</option>
+    //`
   });
   citySelect.addEventListener("change", () => {
     fetchClinic(citySelect.value);
@@ -29,17 +32,18 @@ const fetchCity = async () => {
       }
     });
     const clinicData = await response.json();
-    console.log("clini",clinicData)
+    //console.log("clini",clinicData)
 
 
 
     const clinicSelect = document.querySelector("#clinic");
+    clinicSelect.innerHTML="";
     clinicData.map((el)=>{
-      let option = document.createElement("option");
-      option.value=el._id;
-      option.text=el.clinic;
+      let option = new Option(el.clinic,el._id);
+      // option.value=el._id;
+      // option.text=el.clinic;
 
-      clinicSelect.appendChild(option);
+      clinicSelect.add(option,undefined);
     // clinicSelect.innerHTML = `
     // <option value="">Select City</option>
     // <option value="${el._id}">${el.clinic}</option>
@@ -102,8 +106,8 @@ const appointmentData = async (
 
   let clinic_id=  document.querySelector("#clinic").value
 
-  console.log(clinic_id,appointData)
-  //console.log("abc",appointData)
+  //console.log(clinic_id,appointData)
+ 
    const response = await fetch(`http://localhost:4000/users/bookslot/${clinic_id}`, {
      method: "POST",
      headers: {
@@ -116,5 +120,5 @@ const appointmentData = async (
    let result=await response.json();
    alert(result.msg)
    console.log(result);
-  // console.log(city, clinic, date, mobile_number, name, email, text_msg);
+  
 };
