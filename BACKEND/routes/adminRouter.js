@@ -1,18 +1,19 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
+
 const jwt = require("jsonwebtoken");
 
 const { adminAuth } = require("../middleware/adminAuth");
-// const { authenticator } = require("../middleware/authenticator");
 
 const { UserModel } = require("../models/UserModel");
-// const { bookingModel } = require("../models/booking.model");
+
 const {ClinicModel}=require('../models/ClinicModel');
+const { SlotModel } = require("../models/SlotModel");
 
 const adminRouter = express.Router();
 
 require("dotenv").config();
 
+// ADMIN LOGIN API
 adminRouter.post("/adminlogin", async (req, res) => {
   let { email, password } = req.body;
   try {
@@ -34,38 +35,50 @@ adminRouter.post("/adminlogin", async (req, res) => {
   }
 });
 
+// GET ALL USERS API
 adminRouter.get("/getusers", adminAuth, async (req, res) => {
   try {
     const data = await UserModel.find();
-    res.send({ msg: data });
-  } catch (err) {
-    res.send({ err: err.message });
+    if(data.length){
+      res.status(200).send(data);
+    }
+    else{
+      res.status(404).send('No user found');
+    }
+  } 
+  catch (err) {
+    console.log(err.message);
+    res.sendStatus(400); 
   }
 });
 
-// get all clinics [clinic1,clinic2,clinic3.....]
+// GET ALL CLINICS [clinic1,clinic2,clinic3.....]
 adminRouter.get('/allclinics',adminAuth,async(req,res)=>{
-    try {
-        const clinics=await ClinicModel.distinct("clinic");
-        res.status(200).send(clinics);
-    } 
-    catch (error) {
-       res.sendStatus(400); 
-    }
+  try {
+    const clinics=await ClinicModel.distinct("clinic");
+    res.status(200).send(clinics);
+  } 
+  catch (error) {
+    console.log(error.message);
+    res.sendStatus(400); 
+  }
 })
 
-// adminRouter.post("/bookings", async (req, res) => {
-//   const { email, pass } = req.body;
-//   if (email === process.env.adminId && pass === process.env.adminPass) {
-//     try {
-//       const data = await bookingModel.find();
-//       res.send({ msg: data });
-//     } catch (err) {
-//       res.send({ err: err.message });
-//     }
-//   } else {
-//     res.send({ err: "You are not Authorized to go further." });
-//   }
-// });
+// GET ALL APPOINTMENTS [appointment1,appointment2,appointment3...]
+adminRouter.get('/allappointments',adminAuth,async(req,res)=>{
+  try {
+    const appointments=await SlotModel.find();
+    if(appointments.length){
+      res.status(200).send(appointments);
+    }
+    else{
+      res.status(404).send('No appointment found');
+    }
+  } 
+  catch (error) {
+    // console.log(error.message);
+    res.sendStatus(400); 
+  }
+})
 
 module.exports = { adminRouter };
