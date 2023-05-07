@@ -2,8 +2,7 @@ const mongoose=require('mongoose');
 
 const slotSchema= new mongoose.Schema({
     userID: String,
-    city: String,
-    clinic: String,
+    clinicID: String,
     time: Number
 },{versionKey:false});
 
