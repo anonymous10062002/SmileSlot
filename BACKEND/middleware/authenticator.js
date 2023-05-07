@@ -13,12 +13,12 @@ const authenticator= async(req,res,next)=>{
             else{
                 jwt.verify(accessToken,process.env.normalKey,(err,decoded)=>{
                     if(err){
-                        return res.send({msg:err.message,status:"error"})
+                        return res.send({msg:err.message,status:"error"});
                     }
                     else{
                         let userID=decoded.userID;
-                        req.body.userID=userID
-                        next()
+                        req.body.userID=userID;
+                        next();
                     }
                     
                 })

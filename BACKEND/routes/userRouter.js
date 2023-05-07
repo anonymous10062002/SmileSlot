@@ -5,29 +5,14 @@ const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 const {UserModel}=require('../models/UserModel');
 const {ClinicModel}=require('../models/ClinicModel');
-const {SlotModel}=require('../models/ClinicModel');
+const {SlotModel}=require('../models/SlotModel');
 const {authorize}=require('../middleware/authorize');
 const {authenticator} = require('../middleware/authenticator');
 const {client}=require('../config/db');
 const {sendmail}=require("../services/mail")
 
 
-/// get all users
-
-// userRouter.get("/allusers",async(req,res)=>{
-
-//     try {
-//         let allusers = await UserModel.find();
-
-//         res.send({allusers:allusers,status:"success"})
-        
-//     } catch (error) {
-//         res.send({msg:"something went wrong",status:"error"})
-//     }
-// })
-
-/// signup 
-
+// SIGNUP API
 userRouter.post('/signup',async(req,res)=>{
     let {username,email,password,mobile,age, role}=req.body;
     try {
@@ -45,13 +30,13 @@ userRouter.post('/signup',async(req,res)=>{
         }
         if(isFound){
            
-            res.status(403).send({err:'User already exist..!'});
+            res.status(403).send({mag:'User already exist..!',status:"error"});
         }
         else{
             bcrypt.hash(password,4,async(err,hash)=>{
                 if(err){
                     console.log(err);
-                    res.status(400).send({err:'Oops something went wrong..!'});
+                    res.status(400).send({msg:'Oops something went wrong..!',status:"error"});
                 }
                 else{
 
@@ -65,12 +50,11 @@ userRouter.post('/signup',async(req,res)=>{
         }
     } catch (error) {
         // console.log(error);
-        res.send({err:"Oops something went wrong..! ",status:"error"})
+        res.send({msg:"Oops something went wrong..! ",status:"error"})
     }
 })
 
-/// verify email 
-
+/// VERIFY EMAIL API
 userRouter.post("/verifyuser",async(req,res)=>{
     const {email,otp}=req.body;
 
@@ -98,8 +82,7 @@ userRouter.post("/verifyuser",async(req,res)=>{
     
 })
 
-// login 
-
+// LOGIN API
 userRouter.post('/login',async(req,res)=>{
     let {email,password}=req.body;
     try {
@@ -113,11 +96,10 @@ userRouter.post('/login',async(req,res)=>{
                     let token=jwt.sign({userID: user._id},process.env.normalKey,{expiresIn:"1d"});
                     let refresh_token=jwt.sign({userID: user._id},process.env.refreshKey,{expiresIn:"30d"});
 
-                    res.status(200).send({msg:"login successfull",token:token,status:"success"});
-
+                    res.status(200).send({msg:"login successfull",token:token,status:"success",user});
                 }
                 else{
-                    // console.log(err);
+                    console.log(err);
                     res.status(400).send({msg:'Wrong credentials..!',status:"error"});
                 }
             })
@@ -133,8 +115,7 @@ userRouter.post('/login',async(req,res)=>{
 })
 
 
-/// refresh token
-
+/// GET REFRESH TOKEN API
 userRouter.get("/refreshtoken",(req,res)=>{
 
     const refreshtoken=req.headers.authorization?.split(" ")[1]
@@ -142,10 +123,9 @@ userRouter.get("/refreshtoken",(req,res)=>{
     if(!refreshtoken){
         return res.send({msg:"please login",status:"error"});
     }
-
     jwt.verify(token,process.env.refreshKey , function(err, decoded) {
         if(err){
-            return res.send({msg:"please login"})
+            return res.send({msg:"please login",status:"error"})
         }else{
             let userID=decoded.userID
             const token = jwt.sign({userID:userID}, 'hush',{expiresIn:"1d"});
@@ -153,12 +133,9 @@ userRouter.get("/refreshtoken",(req,res)=>{
         }
         
       });
-    
-    
 })
 
-// logout
-
+// LOGOUT
 userRouter.get('/logout',async(req,res)=>{
     let token = req.headers.authorization;
     try {
@@ -174,7 +151,7 @@ userRouter.get('/logout',async(req,res)=>{
     }
 })
 
-// get all cities [city1, city2, city3, ....]
+// GET ALL CITIES [city1, city2, city3, ....]
 userRouter.get('/allcities',authenticator,async(req,res)=>{
     try {
         const cities=await ClinicModel.distinct("city");
@@ -185,7 +162,7 @@ userRouter.get('/allcities',authenticator,async(req,res)=>{
     }
 })
 
-// get clinics by city name [clinic1, clinic2, clinic3,....]
+// GET CLINIC BY NAME [clinic1, clinic2, clinic3,....]
 userRouter.get('/clinic/:city',authenticator,async(req,res)=>{
     const {city}=req.params;
     try {
@@ -197,22 +174,9 @@ userRouter.get('/clinic/:city',authenticator,async(req,res)=>{
     }
 })
 
-// get all clinics 
-// userRouter.get('/allclinics',authenticator,authorize(["admin"]),async(req,res)=>{
-//     try {
-//         const clinics=await ClinicModel.distinct("clinic");
-//         res.status(200).send(clinics);
-//     } 
-//     catch (error) {
-//        res.sendStatus(400); 
-//     }
-// })
-
-// ONLY FOR USERS HAVING ROLE===DENTIST //
+// ADD CLINIC API - FOR USER WITH ROLE = 'dentist'
 userRouter.post('/addclinic',authenticator,authorize(["dentist"]),async(req,res)=>{
-    const token=req.headers.authorization;
-    const {city,clinic}=req.body;
-    // const userID=token.userID;
+    const {city,clinic,userID}=req.body;
     try {
         const data=new ClinicModel({userID,city,clinic,booked:[]});
         await data.save();
@@ -223,25 +187,81 @@ userRouter.post('/addclinic',authenticator,authorize(["dentist"]),async(req,res)
     }
 })
 
-//  BOOK APPOINTMENT
-
-userRouter.post('/bookslot',authenticator,async(req,res)=>{
-    const {userID,city,clinic,date}=req.body;  //userID need to be changed
+// GET ALL APPOINTMENTS API - FOR 'dentist'
+userRouter.get('/dentist/appointments',authenticator,authorize(["dentist"]),async(req,res)=>{
     try {
-        const clin=await ClinicModel.findOne({clinic});
-        const isBooked=clin.booked.includes(date);
-        if(isBooked){
-            res.status(400).send({msg:"already booked"});
+        let bookedslots=await SlotModel.aggregate(
+            [
+                {
+                    $lookup:{
+                        from:"clinics",
+                        localField:"clinicID",
+                        foreignField:"_id",
+                        as:"bookedslots"
+                    }
+                },
+                {
+                    $project:{
+                        _id:1,
+                        userID:1,
+                        time:1
+                    }
+                }
+            ]
+        );
+        if(bookedslots.length){
+            res.status(200).send(bookedslots);
         }
         else{
-            await ClinicModel.findOneAndUpdate({clinic},{$push:{booked:date}});
-            const slot=new SlotModel({userID,city,clinic,date});
-            await slot.save();
-            res.status(200).send({msg:"appointment  booked successfully"});
+            res.status(404).send('No slots booked yet');
         }
     } 
     catch (error) {
-       res.sendStatus(400); 
+        console.log(error.message);
+        res.sendStatus(400); 
+    }
+})
+
+//  BOOK APPOINTMENT API
+userRouter.post('/bookslot/:clinicID',authenticator,async(req,res)=>{
+    // just pass the "date" in request body object
+    const {userID,date}=req.body; 
+    let d=new Date(date); 
+    let time=d.getTime();  
+    try {
+        const data=await ClinicModel.findOne({_id:clinicID});
+        const isBooked=data.time.includes(time);
+        if(isBooked){
+            res.status(400).send({msg:"Already booked! Choose different time slot"});
+        }
+        else{
+            await ClinicModel.findOneAndUpdate({_id:clinicID},{$push:{time:time}});
+            const slot=new SlotModel({userID,clinicID:data._id,time});
+            await slot.save();
+            res.status(200).send({msg:"Appointment booked successfully"});
+        }
+    } 
+    catch (error) {
+        console.log(error.message);
+        res.sendStatus(400); 
+    }
+})
+
+// GET MY APPOINTMENTS API
+userRouter.get('/myappointments',authenticator,async(req,res)=>{
+    const {userID}=req.body;
+    try {
+        let bookedslots=await SlotModel.find({userID});
+        if(bookedslots.length){
+            res.status(200).send(bookedslots);
+        }
+        else{
+            res.status(404).send('No appointments booked yet');
+        }
+    } 
+    catch (error) {
+        console.log(error.message);
+        res.sendStatus(400); 
     }
 })
 

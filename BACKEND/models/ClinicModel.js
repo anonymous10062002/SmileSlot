@@ -4,7 +4,7 @@ const clinicSchema= new mongoose.Schema({
     userID: String,
     city: String,
     clinic: String,
-    booked: [{type:Date}]
+    time: [{type:Number,unique:true}]
 },{versionKey:false});
 
 const ClinicModel=mongoose.model('clinics',clinicSchema);
