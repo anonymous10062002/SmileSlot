@@ -39,6 +39,7 @@ adminRouter.get("/getusers", adminAuth, async (req, res) => {
     const data = await UserModel.find();
     res.send({ msg: data });
   } catch (err) {
+    console.log(err.message);
     res.send({ err: err.message });
   }
 });
@@ -46,10 +47,10 @@ adminRouter.get("/getusers", adminAuth, async (req, res) => {
 // get all clinics [clinic1,clinic2,clinic3.....]
 adminRouter.get("/allclinics", adminAuth, async (req, res) => {
   try {
-    const clinics = await ClinicModel.distinct("clinic");
-    res.status(200).send(clinics);
+    const clinics = await ClinicModel.find();
+    res.status(200).send({ msg: clinics });
   } catch (error) {
-    res.sendStatus(400);
+    res.status(400).send({ err: error.message });
   }
 });
 
