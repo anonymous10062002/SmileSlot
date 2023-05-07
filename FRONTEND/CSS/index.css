@@ -53,12 +53,15 @@ nav {
     display: flex;
     justify-content: space-between;
     /* background-color: #2b1a12; */
-    background-image: linear-gradient(163deg, #2b1a12 0%, #6a3922 100%);
-    color: white;
+    /* background-image: linear-gradient(163deg, #2b1a12 0%, #6a3922 100%); */
+
+    background-image: linear-gradient(to right,  #8AB6F9 0%, #8AB6F9, #8AB6F9 100%);
+    color: rgb(0, 0, 0);
     padding-top: 10px;
     /* make bottom box shaddow */
     box-shadow: 0px 15px 15px 0px rgba(0, 0, 0, 0.2);
     /* position: fixed; */
+    font-weight: 900;
 }
 
 .ultags {
@@ -387,12 +390,13 @@ nav {
 
 footer {
     /* background-color: #f5f5f5; */
-    background-image: linear-gradient(163deg, #2b1a12 0%, #6a3922 100%);
+    background-image: linear-gradient(to right,  #CADCFC 0%, #8AB6F9, #00246B 100%);
     padding: 50px 0;
     font-size: 14px;
-    color: #eeedec;
+    color: #090704;
     height: 300px;
     margin-bottom: 10px;
+    font-weight: 900;
 }
 
 footer h4 {
@@ -400,7 +404,7 @@ footer h4 {
     font-weight: bold;
     margin-top: 0;
     margin-bottom: 20px;
-    color: #f1eeee;
+    color: #070606;
 }
 
 footer h4:hover {
