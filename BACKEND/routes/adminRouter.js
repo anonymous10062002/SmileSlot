@@ -4,36 +4,32 @@ const { adminAuth } = require("../middleware/adminAuth");
 const { UserModel } = require("../models/UserModel");
 const { ClinicModel } = require('../models/ClinicModel');
 const { SlotModel } = require("../models/SlotModel");
+const { client } = require("../config/db");
 
 const adminRouter = express.Router();
 
 require("dotenv").config();
 
 // ADMIN LOGIN API
-adminRouter.post("/adminlogin", async (req, res) => {
-  let { email, password } = req.body;
+adminRouter.post("/login", async(req,res)=>{
+  const {email,password}=req.body;
   try {
     if (email === process.env.adminId && password === process.env.adminPass) {
-      let token = jwt.sign(
-        { email: email, age: 20, role: "admin" },
-        process.env.adminKey
-      );
-      res
-        .status(200)
-        .send({ token, adminData: { email: email, age: 20, role: "admin" } });
-    } else {
-      res
-        .status(404)
-        .send({ msg: "No user found with this eamil! Please register first." });
+      const token = jwt.sign({email,age:20,role:"admin"},process.env.adminKey);
+      res.status(200).send({token, adminData: {email,age:20,role:"admin"}});
+    } 
+    else{
+      res.status(404).send({ msg: "No user found with this eamil! Please register first."});
     }
-  } catch (error) {
-    res.sendStatus(400);
+  } 
+  catch(error){
+    res.status(400).send({ err: error.message });
   }
 });
 
 // GET ALL USERS API
 adminRouter.get("/getusers", adminAuth, async (req, res) => {
-  try {
+  try{
     const data = await UserModel.find();
     if (data.length) {
       res.status(200).send(data);
@@ -41,22 +37,22 @@ adminRouter.get("/getusers", adminAuth, async (req, res) => {
     else {
       res.status(404).send('No user found');
     }
-  }
-  catch (err) {
-    console.log(err.message);
-    res.sendStatus(400);
+
+  } 
+  catch(error){
+    res.status(400).send({ err: error.message });
   }
 });
 
 // GET ALL CLINICS [clinic1,clinic2,clinic3.....]
-adminRouter.get('/allclinics', adminAuth, async (req, res) => {
-  try {
 
+adminRouter.get('/allclinics',adminAuth,async(req,res)=>{
+  try{
     const clinics = await ClinicModel.find();
     res.status(200).send({ msg: clinics });
-  } catch (error) {
+  } 
+  catch(error){
     res.status(400).send({ err: error.message });
-
   }
 })
 
@@ -70,10 +66,21 @@ adminRouter.get('/allappointments', adminAuth, async (req, res) => {
     else {
       res.status(404).send('No appointment found');
     }
+
+  } 
+  catch(error){
+    res.status(400).send({ err: error.message });
   }
-  catch (error) {
-    // console.log(error.message);
-    res.sendStatus(400);
+})
+
+// ADMIN LOGOUT API
+adminRouter.get('/logout',adminAuth,async(req,res)=>{
+  const accessToken = req.headers.authorization?.split(' ')[1];
+  try {
+    await client.SADD("blackTokens",accessToken);
+    res.status(200).send({ msg: "Logged out successfully" });
+  } catch (error) {
+    res.status(400).send({ err: error.message });
   }
 })
 

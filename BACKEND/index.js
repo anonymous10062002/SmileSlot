@@ -16,15 +16,14 @@ app.listen(process.env.port, async () => {
   try {
     // mongoDb connection
     await mongoDB;
-    console.log('MongoDB', true);
+    console.log('MongoDB:', true);
 
     // redis connection
     await client.connect();
-    console.log('Redis', client.isReady);
+    console.log('Redis:', client.isReady);
   } 
   catch (error) {
     console.log(error);
   }
   console.log(`Running at:${process.env.port}`);
 });
-

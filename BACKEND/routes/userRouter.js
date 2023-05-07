@@ -14,22 +14,19 @@ const {sendmail}=require("../services/mail")
 
 // SIGNUP API
 userRouter.post('/signup',async(req,res)=>{
-    let {username,email,password,mobile,age, role}=req.body;
+    const {username,email,password,mobile,age, role}=req.body;
     try {
         const isFound=await UserModel.findOne({email});
-
         if(isFound?.verified==false){
             id=isFound._id
-            try {
-               
+            try{
                 await UserModel.findByIdAndDelete({_id:id});
-               
-            } catch (error) {
-                console.log(error)
+            } 
+            catch(error){
+                res.status(400).send({ err: error.message });
             }
         }
         if(isFound){
-           
             res.status(403).send({mag:'User already exist..!',status:"error"});
         }
         else{
@@ -39,7 +36,6 @@ userRouter.post('/signup',async(req,res)=>{
                     res.status(400).send({msg:'Oops something went wrong..!',status:"error"});
                 }
                 else{
-
                     let user=new UserModel({username,email,password:hash,mobile,age,verified:false, role});
                     await user.save();
                     const sotp= sendmail(email);
@@ -48,8 +44,9 @@ userRouter.post('/signup',async(req,res)=>{
                 }
             })
         }
-    } catch (error) {
-        res.status(400).send({"err":error.message}); 
+    } 
+    catch(error){
+        res.status(400).send({ err: error.message });
     }
 })
 
@@ -76,14 +73,13 @@ userRouter.post("/verifyuser",async(req,res)=>{
         }
     }
     catch(error){
-        res.status(400).send({"err":error.message}); 
+        res.status(400).send({ err: error.message });
     }
-    
 })
 
 // LOGIN API
 userRouter.post('/login',async(req,res)=>{
-    let {email,password}=req.body;
+    const {email,password}=req.body;
     try {
         let user=await UserModel.findOne({email});
         // console.log(user?.verified)
@@ -106,8 +102,9 @@ userRouter.post('/login',async(req,res)=>{
         else{
             res.status(404).send({msg:'No user found with this eamil! Please register first.',status:"error"});
         }
-    } catch (error) {
-        res.status(400).send({"err":error.message}); 
+    }
+    catch(error){
+        res.status(400).send({ err: error.message });
     }
 })
 
@@ -136,13 +133,13 @@ userRouter.get('/logout',async(req,res)=>{
     try {
         if (token) {
           await client.SADD("blackTokens", token);
-          res.status(200).send("Log out successfull");
+          res.status(200).send("Logged out successfully");
         } else {
           res.status(401).send("Unauthorised...!");
         }
       }  
-    catch (error) {
-        res.status(400).send({"err":error.message}); 
+      catch(error){
+        res.status(400).send({ err: error.message });
     }
 })
 
@@ -152,8 +149,8 @@ userRouter.get('/allcities',authenticator,async(req,res)=>{
         const cities=await ClinicModel.distinct("city");
         res.status(200).send(cities);
     } 
-    catch (error) {
-        res.status(400).send({"err":error.message}); 
+    catch(error){
+        res.status(400).send({ err: error.message });
     }
 })
 
@@ -164,8 +161,8 @@ userRouter.get('/clinic/:city',authenticator,async(req,res)=>{
         const clinic=await ClinicModel.find({city});
         res.status(200).send(clinic);
     } 
-    catch (error) {
-        res.status(400).send({"err":error.message}); 
+    catch(error){
+        res.status(400).send({ err: error.message });
     }
 })
 
@@ -177,8 +174,8 @@ userRouter.post('/addclinic',authenticator,authorize(["dentist"]),async(req,res)
         await data.save();
         res.status(200).send({msg:"clinic added successfully"});
     } 
-    catch (error) {
-        res.status(400).send({"err":error.message}); 
+    catch(error){
+        res.status(400).send({ err: error.message });
     }
 })
 
@@ -211,9 +208,8 @@ userRouter.get('/dentist/appointments',authenticator,authorize(["dentist"]),asyn
             res.status(404).send('No slots booked yet');
         }
     } 
-    catch (error) {
-        console.log(error.message);
-        res.sendStatus(400); 
+    catch(error){
+        res.status(400).send({ err: error.message });
     }
 })
 
@@ -238,9 +234,8 @@ userRouter.post('/bookslot/:clinicID',authenticator,async(req,res)=>{
             res.status(200).send({msg:"Appointment booked successfully"});
         }
     } 
-    catch (error) {
-        console.log(error.message);
-        res.sendStatus(400); 
+    catch(error){
+        res.status(400).send({ err: error.message });
     }
 })
 
@@ -256,9 +251,8 @@ userRouter.get('/myappointments',authenticator,async(req,res)=>{
             res.status(404).send('No appointments booked yet');
         }
     } 
-    catch (error) {
-        console.log(error.message);
-        res.sendStatus(400); 
+    catch(error){
+        res.status(400).send({ err: error.message });
     }
 })
 
