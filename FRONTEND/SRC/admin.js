@@ -1,6 +1,6 @@
 let userBtn = document.getElementById("user_data_btn");
 let clinicBtn = document.getElementById("clinic_data_btn");
-
+let logoutBtn = document.getElementById("logoutBtn");
 let token = localStorage.getItem("admin_token");
 
 let tableheading = document.getElementById("tableHeading");
@@ -18,11 +18,12 @@ window.addEventListener("load", fetchingUserData);
 function fetchingClinicData() {
   tableheading.innerText = "Smile Slot Clinic Data";
 
-  col1.innerText = "Owner ID";
-  col2.innerText = "City";
-  col3.innerText = "Clinic Name";
-  col4.innerHTML = null;
-  col5.innerHTML = null;
+  col1.innerText = "City";
+  col2.innerText = "Clinic Name";
+  col3.innerHTML = "Verified";
+  col4.innerText = "Owner ID";
+  col5.innerHTML = "DELETE";
+  col5.style = "text-align:center";
 
   fetch(`http://localhost:4000/admin/allclinics`, {
     method: "GET",
@@ -42,11 +43,12 @@ function fetchingClinicData() {
 function fetchingUserData() {
   tableheading.innerText = "Smile Slot User Data";
 
-  col1.innerText = "Email";
+  col1.innerText = "Username";
   col2.innerText = "Age";
   col3.innerText = "Role";
   col4.innerText = "Block";
   col5.innerText = "Verified";
+  col5.style = "text-align:center";
 
   fetch(`http://localhost:4000/admin/getusers`, {
     method: "GET",
@@ -55,10 +57,12 @@ function fetchingUserData() {
       Authorization: `Bearer ${token}`,
     },
   })
-    .then((res) =>{ return res.json()})
     .then((res) => {
-      console.log(res, res.msg);
-      showData(res.msg);
+      return res.json();
+    })
+    .then((res) => {
+      console.log(res);
+      showData(res);
     })
     .catch((err) => console.log(err));
 }
@@ -67,11 +71,11 @@ let tbody = document.getElementById("tbody");
 
 function showData(arr) {
   tbody.innerHTML = null;
-  arr.forEach((el) => {
+  arr.forEach((el, index) => {
     let tr = document.createElement("tr");
 
-    let email = document.createElement("td");
-    email.innerText = el.email;
+    let username = document.createElement("td");
+    username.innerText = el.username;
 
     let age = document.createElement("td");
     age.innerText = el.age;
@@ -84,35 +88,68 @@ function showData(arr) {
     Delete.setAttribute("id", "delete");
 
     let verified = document.createElement("td");
-    verified.innerText = el.verified;
+    verified.innerHTML = `<p class="deleteClcBtn">${el.verified}</p>`;
 
-    // Delete.addEventListener("click", function () {
-    //   arr.splice(index, 1);
-    //   localStorage.setItem("addData", JSON.stringify(arr));
-    //   showData(arr);
-    // });
+    Delete.addEventListener("click", function () {
+      arr.splice(index, 1);
+      showData(arr);
+    });
+    
+    tr.append(username, age, role, Delete, verified);
 
-    tr.append(email, age, role, Delete, verified);
     tbody.append(tr);
   });
 }
 
 function showClinicData(arr) {
   tbody.innerHTML = null;
-  arr.forEach((el) => {
+  arr.forEach((el, index) => {
     let tr = document.createElement("tr");
-
-    let ownerId = document.createElement("td");
-    ownerId.innerText = el.userID;
 
     let city = document.createElement("td");
     city.innerText = el.city;
 
+    let verified = document.createElement("td");
+    verified.innerText = "true";
+
     let clinic = document.createElement("td");
     clinic.innerText = el.clinic;
 
-    tr.append(ownerId, city, clinic);
+    let ownerId = document.createElement("td");
+    ownerId.innerText = el.userID;
+
+    let Delete = document.createElement("td");
+    Delete.innerHTML = `<button class="deleteClinicBtn">DELETE</button>`;
+
+    Delete.addEventListener("click", function () {
+      arr.splice(index, 1);
+      showClinicData(arr);
+    });
+
+    tr.append(city, clinic, verified, ownerId, Delete);
 
     tbody.append(tr);
   });
+}
+
+logoutBtn.addEventListener("click", logoutAdmin);
+
+function logoutAdmin() {
+  fetch(`http://localhost:4000/admin/logout`, {
+    method:"GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    }
+  }).then((res)=> res.json())
+  .then((res)=> {
+    swal(``, res.msg, "success");
+    setTimeout(() => {
+      localStorage.removeItem("admin_token");
+      token = null;
+      window.location.href="../Public/admlog.html";
+  }, 3000)
+  }).catch((error)=> {
+    swal(``, error.message, "error")
+  })
 }

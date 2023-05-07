@@ -16,10 +16,10 @@ adminRouter.post("/login", async(req,res)=>{
   try {
     if (email === process.env.adminId && password === process.env.adminPass) {
       const token = jwt.sign({email,age:20,role:"admin"},process.env.adminKey);
-      res.status(200).send({token, adminData: {email,age:20,role:"admin"}});
+      res.status(200).send({msg: "Logged in successfully",token});
     } 
     else{
-      res.status(404).send({ msg: "No user found with this eamil! Please register first."});
+      res.status(404).send({ err: "No user found with this eamil! Please register first."});
     }
   } 
   catch(error){
