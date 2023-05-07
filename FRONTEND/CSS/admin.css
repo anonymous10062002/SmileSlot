@@ -1,0 +1,179 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat:wght@600&family=Poppins&family=Quicksand&display=swap");
+
+#logoside {
+    width: 100%;
+    margin: auto;
+}
+
+#delete {
+    transition: transform .1s;
+    cursor: pointer;
+}
+
+#delete:hover {
+    color: red;
+}
+
+ul {
+    margin-left: -37px;
+}
+
+hr {
+    width: 100%;
+}
+
+#h4 {
+    text-align: center;
+}
+
+#h4 a{
+    text-decoration: none;
+    color: black;
+}
+
+#h4 a :hover {
+    color: red;
+}
+
+ul li {
+    list-style: none;
+    text-decoration: none;
+}
+
+li a {
+    margin-left: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+li a:hover {
+    text-decoration: underline;
+}
+
+section {
+    position: absolute;
+    top: 25%;
+    left: 24%;
+    width: 69%;
+}
+
+#container {
+    display: flex;
+}
+
+#sidebar {
+    border-radius: 10px;
+    background-color: #D1C4E9;
+    margin-top: 0.5%;
+    width: 25%;
+}
+
+#imagebox {
+    width: 170%;
+    margin: auto;
+    position: -webkit-sticky;
+    margin-top: 1%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.dataimg {
+    background-color: #D1C4E9;
+    border-radius: 10px;
+    padding: 7px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, #D1C4E9 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.dataimg img {
+    width: 190px;
+}
+
+
+h1 {
+    font-family: Montserrat;
+    color: #333;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+table {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    font-family: Montserrat;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.tbl-content {
+    font-family: Montserrat;
+    height: 300px;
+    overflow-x: auto;
+    margin-top: 0px;
+    border: 1px solid #fff;
+}
+
+th {
+    font-family: Montserrat;
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 15px;
+    color: black;
+    text-transform: uppercase;
+}
+
+td {
+    font-family: Montserrat;
+    padding: 15px;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: 300;
+    font-size: 13px;
+    color: black;
+    border-bottom: solid 1px black;
+}
+
+body {
+    background-color: #EDE7F6;
+    font-family: Montserrat;
+}
+
+section {
+    margin: 50px;
+}
+
+
+/* for custom scrollbar for webkit browser*/
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+#tbl-header {
+    font-family: Montserrat;
+    background-color: #D1C4E9;
+    color: #FFEBEE;
+}
+
+.datatype {
+    background-color: #D1C4E9;
+    margin-bottom: 50px;
+    margin-left: 65px;
+    border: none;
+}
+
+.datatype img {
+    width: 200px;
+}
+
+.datatype :hover {
+    cursor: pointer;
+}
