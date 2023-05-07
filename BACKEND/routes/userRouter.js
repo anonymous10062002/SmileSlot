@@ -30,13 +30,13 @@ userRouter.post('/signup',async(req,res)=>{
         }
         if(isFound){
            
-            res.status(403).send({err:'User already exist..!'});
+            res.status(403).send({mag:'User already exist..!',status:"error"});
         }
         else{
             bcrypt.hash(password,4,async(err,hash)=>{
                 if(err){
                     console.log(err);
-                    res.status(400).send({err:'Oops something went wrong..!'});
+                    res.status(400).send({msg:'Oops something went wrong..!',status:"error"});
                 }
                 else{
 
@@ -50,7 +50,7 @@ userRouter.post('/signup',async(req,res)=>{
         }
     } catch (error) {
         // console.log(error);
-        res.send({err:"Oops something went wrong..! ",status:"error"})
+        res.send({msg:"Oops something went wrong..! ",status:"error"})
     }
 })
 
@@ -125,7 +125,7 @@ userRouter.get("/refreshtoken",(req,res)=>{
     }
     jwt.verify(token,process.env.refreshKey , function(err, decoded) {
         if(err){
-            return res.send({msg:"please login"})
+            return res.send({msg:"please login",status:"error"})
         }else{
             let userID=decoded.userID
             const token = jwt.sign({userID:userID}, 'hush',{expiresIn:"1d"});

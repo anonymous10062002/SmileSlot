@@ -1,11 +1,7 @@
 const express = require("express");
-
 const jwt = require("jsonwebtoken");
-
 const { adminAuth } = require("../middleware/adminAuth");
-
 const { UserModel } = require("../models/UserModel");
-
 const {ClinicModel}=require('../models/ClinicModel');
 const { SlotModel } = require("../models/SlotModel");
 
