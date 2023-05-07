@@ -91,6 +91,11 @@ nav {
     color: white;
 }
 
+input[type="number"]::-webkit-inner-spin-button, ::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .input-form{
     width: 90%;
     margin: auto;
@@ -98,6 +103,30 @@ nav {
     justify-content: space-between;
     text-align: center;
     margin-top: 50px;
+}
+
+#text-message{
+    height: 3rem;
+    width: 80%;
+    text-align: center;
+    font-size: 15px;
+}
+
+#otp{
+    height: 2rem;
+}
+
+#refresh>button{
+    background-color: white;
+    border: none;
+}
+
+.fa-arrows-rotate{
+    font-size: 17px;
+}
+
+#otp{
+    width: 60%
 }
 
 .input-form select{
@@ -226,4 +255,145 @@ nav {
     font-size: 16px;
     font-weight: 500;
     margin-left: 30%;
+}
+
+.fa-location-dot{
+    font-size: 30px;
+    color: white;
+}
+
+.show-clinic-bg{
+    margin: auto;
+    width: 70%;
+    color: black;
+    margin-top: 100px;
+    padding: 10px;
+    background-color: #ff8001;
+}
+
+.show-random-otp{
+    background-color: #ff8001;
+    color: black;
+}
+
+.red-msg{
+    color: red;
+}
+
+
+/* footer section  */
+
+footer {
+    /* background-color: #f5f5f5; */
+    background-image: linear-gradient(163deg, #2b1a12 0%, #6a3922 100%);
+    padding: 50px 0;
+    font-size: 14px;
+    color: #eeedec;
+    height: 300px;
+    margin-bottom: 10px;
+}
+
+footer h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #f1eeee;
+}
+
+footer h4:hover {
+    background-image: linear-gradient(163deg, rgb(49, 210, 157) 0%, orange 100%);
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 900;
+    color: black;
+    padding: 5px;
+    cursor: pointer;
+}
+
+footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+footer ul li {
+    padding: 5px 0;
+}
+
+.contact {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.contact p {
+    margin-top: 10px;
+    margin: auto;
+}
+
+footer ul li {
+    padding: 5px 0;
+    
+}
+
+footer ul li:hover {
+    background-image: linear-gradient(163deg, orange 0%, rgb(49, 210, 157) 100%);
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.contact {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.contact p {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.row {
+    margin-bottom: 20px;
+}
+
+.col-md-4 {
+    width: 25%;
+    float: left;
+    padding-right: 15px;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+.col-md-5 {
+    margin-top: -35px;
+    width: 25%;
+    float: left;
+    padding-right: 15px;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+
+#usernamehere {
+    background-color: white;
+    color: #2b1a12;
+    text-decoration: none;
+    list-style-type: none;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#usernamehere:hover {
+    background-color: #4070f4;
+    color: white;
 }

@@ -55,15 +55,18 @@
           <br />
           <span>1</span><br /><br />
           <label for="">SELECT CITY</label><br />
-          <select name="city" id="city"></select
+          <select name="city" id="city" required></select
           ><br /><br />
           <label for="">SELECT CLINIC</label><br />
-          <select name="clinic" id="clinic"></select>
+          <select name="clinic" id="clinic" required>
+            <option value="">Select Clinic</option>
+          </select>
+          <div class="show-city-clinic"></div>
       </div>
       <div id="date">
         <br /><span>2</span><br /><br />
           <label for="">Month</label><br />
-          <select name="" id="month">
+          <select name="" id="month" required>
             <option value="">Select Month</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -80,7 +83,7 @@
             </select>
           <br />
           <label for="">Date</label><br />
-          <select name="" id="datee">
+          <select name="" id="datee" required>
             <option value="">Select Date</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -114,7 +117,7 @@
             <option value="30">30</option></select
           ><br />
           <label for="year">Year</label><br />
-          <select name="year" id="year">
+          <select name="year" id="year" required>
             <option value="">Select year</option>
             <option value="2023">2023</option>
             <option value="2024">2024</option>
@@ -134,28 +137,39 @@
           <label id="personal-det" for="">PERSONAL DETAIL</label><br /><br />
           <input
             style="padding: 8px; width: 90%"
-            type="text"
+            type="number"
             placeholder="Mobile Number*"
             id="mobile-number"
+            required
           /><br />
           <input
             style="padding: 8px; width: 90%"
             type="text"
             placeholder="Full Name*"
             id="name"
+            required
           /><br />
           <input
             style="padding: 8px; width: 90%"
             type="text"
             placeholder="Email Id"
             id="email"
+            required
           /><br />
           <input
-            style="padding: 16px; width: 90%"
             type="text"
             placeholder="Type Text Message"
             id="text-message"
+            required
           /><br />
+          <input type="number" id="otp" placeholder="Type Number Here" required>
+          <h3 class="show-random-otp"></h3><br>
+          <div class="wrong-otp-msg"></div>
+          <div id="refresh">
+            <button>
+              <i class="fa-solid fa-regular fa-arrows-rotate"></i>
+            </button>
+          </div><br>
           <input type="submit" value="SUBMIT" />
         </form>
       </div>
@@ -194,6 +208,73 @@
         <span class="deschome">Google Reviews</span>
       </div>
     </div>
+
+    <!-- <----- footer starts here ----> 
+
+    <footer>
+      <div class="container">
+          <div class="row">
+              <div class="col-md-4">
+                  <h4>Dentist near my location</h4>
+                  <ul>
+                      <li>CLOVE ADVANTAGE</li>
+                      <li>Clove Clinics</li>
+                      <li>Patient Testimonials</li>
+                      <li>Outreach Programs</li>
+                      <li>Patient Feedback</li>
+                      <li>Online Payments</li>
+                  </ul>
+              </div>
+              <div class="col-md-4">
+                  <h4>ABOUT US</h4>
+                  <ul>
+                      <li>About Us</li>
+                      <li>Vision & Mission</li>
+                      <li>Clove Promise</li>
+                      <li>Outreach programs</li>
+                      <li>Board of Directors</li>
+                      <li>Awards and Recognition</li>
+                      <li>Gallery</li>
+                      <li>Contact Us</li>
+                  </ul>
+              </div>
+              <div class="col-md-4">
+                  <h4>USEFUL LINKS</h4>
+                  <ul>
+                      <li>Blogs</li>
+                      <li>News & Media</li>
+                      <li>Dental Education Videos</li>
+                      <li>Dental Awareness</li>
+                      <li>Privacy Policy</li>
+                      <li>Coupon Policy</li>
+                      <li>Book An Appointment</li>
+                      <li>Leasing</li>
+                      <li>Clove’s Scientific Journal</li>
+                      <li>Refund & Re-treatment Policy</li>
+                  </ul>
+              </div>
+
+              <div class="col-md-5">
+                  <div class="contact">
+                      <h4>CALL US</h4>
+                      <ul>
+                          <li>Andhra Pradesh 040 3355 3232</li>
+                          <li>Delhi/NCR 011 3355 3232</li>
+                          <li>Gujarat 1800120003232</li>
+                          <li>Karnataka 080 3355 3232</li>
+                          <li>Maharashtra 020 3355 3232</li>
+                          <li>Punjab 0172 3355 3232</li>
+                          <li>Rajasthan 0141 3355 3232</li>
+                          <li>Telangana 040 3355 3232</li>
+                          <li>Tamil Nadu 044 3355 3232</li>
+                      </ul>
+                      <p>10 AM TO 8 PM EVERY DAY</p>
+                  </div>
+              </div>
+              
+          </div>
+      </div>
+  </footer>
   </body>
   <script src="../SRC/bookAppointment.js"></script>
 </html>

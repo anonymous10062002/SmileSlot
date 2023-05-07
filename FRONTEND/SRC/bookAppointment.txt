@@ -1,4 +1,10 @@
 const token = sessionStorage.getItem("token");
+const refreshButton = document.querySelector(".fa-arrows-rotate");
+const wrongOtpMsg = document.querySelector(".wrong-otp-msg");   
+const randomOTP = document.querySelector(".show-random-otp");
+randomOTP.innerText=`9746`;
+const inputNumber = document.querySelector("#otp");
+
 const fetchCity = async () => {
   let res = await fetch("http://localhost:4000/users/allcities", {
     method:"GET",
@@ -8,7 +14,6 @@ const fetchCity = async () => {
     }
   });
   let cityData = await res.json();
-  // console.log(cityData)
   const citySelect = document.querySelector("#city");
   cityData.map((city)=>{
     citySelect.innerHTML = `
@@ -17,22 +22,56 @@ const fetchCity = async () => {
     `
   });
   citySelect.addEventListener("change", () => {
-    fetchClinic(citySelect.value);
+    fetchClinic("Delhi");
   })
 
   const fetchClinic = async (city) => {
-    const response = await fetch(`http://localhost:4000/clinic/:${city}`, {
+    const response = await fetch(`http://localhost:4000/users/clinic/${city}`, {
       method: "GET",
       headers: {
-        'Content-Type':"application/json",
+        "Content-Type":"application/json",
         Authorization: `Bearer ${token}`
       }
     });
     const clinicData = await response.json();
-    console.log(clinicData)
+    console.log(clinicData);  
+    const clinicSelect = document.querySelector("#clinic");
+    clinicData.map((clinic)=>{
+      clinicSelect.innerHTML = `
+      <option value="">Select Clinic</option>
+      <option value="${clinic.clinic}">${clinic.clinic}</option>
+    `
+    });
+    clinicSelect.addEventListener("change", () => {
+      showClinicCityData(city, clinicSelect.value);
+    });
+    
   }
+
 }
 window.onload = fetchCity();
+
+refreshButton.addEventListener("click", ()=>{
+  generateRandomOTP();
+})
+
+const generateRandomOTP = () => {
+  var seq = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
+  randomOTP.innerHTML = `
+  <h3>${seq}</h3>
+  `
+}
+
+
+const showClinicCityData = (city, clinic) => {
+  const showClinicCity = document.querySelector(".show-city-clinic");
+    showClinicCity.innerHTML = `
+    <i class=" fa-solid fa-location-dot"></i>
+    <h3>City: ${city}</h3>
+    <h3>Clinic: ${clinic}</h3>
+    `;
+    showClinicCity.setAttribute("class", "show-clinic-bg")
+}
 
 const appointmentForm = document.querySelector("form");
 appointmentForm.addEventListener("submit", (e) => {
@@ -65,14 +104,21 @@ appointmentForm.addEventListener("submit", (e) => {
 const appointmentData = async (
   city,
   clinic,
-  date,
-  mobile_number,
-  name,
-  email,
-  text_msg
+  date
 ) => {
-  const appointData = {city,clinic,date,mobile_number,name,email,text_msg}
-  const response = fetch("http://localhost:4000/users/bookslot", {
+  const validateOtp = () => {
+    const randomNumber = randomOTP.innerText;
+    const randomNum = +randomNumber;
+    if(randomNum !== inputNumber.value){
+      wrongOtpMsg.innerHTML = `
+      <p class='red-msg'>Invalid Captcha ! Please refresh and try again</p>
+      `
+      return;
+    }
+  }
+  validateOtp();
+  const appointData = {city,clinic,date}
+  const response = await fetch("http://localhost:4000/users/bookslot", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -80,8 +126,9 @@ const appointmentData = async (
     },
     body: JSON.stringify(appointData)
   })
+  console.log(response);
   if(response.status){
     alert("Slot Booked");
   }
-  console.log(city, clinic, date, mobile_number, name, email, text_msg);
+  console.log(city, clinic, date);
 };
