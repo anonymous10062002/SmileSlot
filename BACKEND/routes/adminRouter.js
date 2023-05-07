@@ -2,7 +2,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const { adminAuth } = require("../middleware/adminAuth");
 const { UserModel } = require("../models/UserModel");
-const {ClinicModel}=require('../models/ClinicModel');
+const { ClinicModel } = require('../models/ClinicModel');
 const { SlotModel } = require("../models/SlotModel");
 
 const adminRouter = express.Router();
@@ -35,21 +35,21 @@ adminRouter.post("/adminlogin", async (req, res) => {
 adminRouter.get("/getusers", adminAuth, async (req, res) => {
   try {
     const data = await UserModel.find();
-    if(data.length){
+    if (data.length) {
       res.status(200).send(data);
     }
-    else{
+    else {
       res.status(404).send('No user found');
     }
-  } 
+  }
   catch (err) {
     console.log(err.message);
-    res.sendStatus(400); 
+    res.sendStatus(400);
   }
 });
 
 // GET ALL CLINICS [clinic1,clinic2,clinic3.....]
-adminRouter.get('/allclinics',adminAuth,async(req,res)=>{
+adminRouter.get('/allclinics', adminAuth, async (req, res) => {
   try {
 
     const clinics = await ClinicModel.find();
@@ -61,19 +61,19 @@ adminRouter.get('/allclinics',adminAuth,async(req,res)=>{
 })
 
 // GET ALL APPOINTMENTS [appointment1,appointment2,appointment3...]
-adminRouter.get('/allappointments',adminAuth,async(req,res)=>{
+adminRouter.get('/allappointments', adminAuth, async (req, res) => {
   try {
-    const appointments=await SlotModel.find();
-    if(appointments.length){
+    const appointments = await SlotModel.find();
+    if (appointments.length) {
       res.status(200).send(appointments);
     }
-    else{
+    else {
       res.status(404).send('No appointment found');
     }
-  } 
+  }
   catch (error) {
     // console.log(error.message);
-    res.sendStatus(400); 
+    res.sendStatus(400);
   }
 })
 
