@@ -1,22 +1,32 @@
-const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const jwt=require("jsonwebtoken");
+const {client}=require('../config/db');
 
-const adminAuth = (req, res, next) => {
-  let accessToken = req.headers.authorization;
+const adminAuth = async(req, res, next)=>{
+  const accessToken=req.headers.authorization?.split(" ")[1];
   try {
     if (accessToken) {
-      jwt.verify(accessToken, process.env.adminKey, (err, decoded) => {
-        if (decoded.role === "admin") {
-          next();
-        } else {
-          res.status(401).send("You are not authorized..!");
-        }
-      });
-    } else {
-      res.status(401).send("Invalid Token..!!");
+      const isBlacklisted=await client.SISMEMBER('blackTokens',accessToken);
+      if(isBlacklisted){
+        res.status(401).send({err:'Blacklisted Token..!'});
+      }
+      else{
+        jwt.verify(accessToken, process.env.adminKey, (err, decoded) => {
+          if(decoded.role === "admin"){
+            next();
+          } 
+          else{
+            res.status(401).send({"err":err});
+          }
+        });
+      }
+    } 
+    else {
+      res.status(401).send({err:"Invalid Token..!!"});
     }
-  } catch {
-    res.status(401).send("Something Went Wrong..!!");
+  } 
+  catch(error){
+    res.status(401).send({"err":error.message});
   }
 };
 
