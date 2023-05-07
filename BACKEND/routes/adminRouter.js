@@ -51,12 +51,12 @@ adminRouter.get("/getusers", adminAuth, async (req, res) => {
 // GET ALL CLINICS [clinic1,clinic2,clinic3.....]
 adminRouter.get('/allclinics',adminAuth,async(req,res)=>{
   try {
-    const clinics=await ClinicModel.distinct("clinic");
-    res.status(200).send(clinics);
-  } 
-  catch (error) {
-    console.log(error.message);
-    res.sendStatus(400); 
+
+    const clinics = await ClinicModel.find();
+    res.status(200).send({ msg: clinics });
+  } catch (error) {
+    res.status(400).send({ err: error.message });
+
   }
 })
 

@@ -1,13 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./1.css">
+    <link rel="stylesheet" href="../CSS/index.css">
+    <link rel="stylesheet" href="../CSS/dentist.css">
 </head>
+
 <body>
 
     <nav class="nav">
@@ -27,13 +29,44 @@
         </div>
 
         <div class="leftsidenav">
-            <a ><button id="btnlogin" style="background-color: red; color: white;">Logout</button></a>
+            <a><button id="btnlogin" style="background-color: red; color: white;">Logout</button></a>
         </div>
 
-    </nav><br><br><br><br><br><br><br><br><br>
+    </nav>
 
+    <header>
+        <video  src="../Imagess/banner-video-village-dental-v2.webm" width="100%"  loop="loop" autoplay playsinline muted >
+            Your browser does not support the video tag.
+        </video>
 
-    
+        <!-- add button left side on the above video -->
+        <a href="#container"><button class="btnleft">Register Clinic</button></a>
+
+    </header>
+
+    <div id="container">
+        <div id="leftdent">
+            <form class="form">
+                <span class="signup">REGISTER YOUR CITY</span>
+                <input type="text" placeholder="ENTER YOUR CITY" class="form--input">
+                <input type="text" placeholder="ENTER YOUR CLINIC" class="form--input">
+                <input type="text" placeholder="CONFIRM CITY ^" class="form--input">
+                <div class="form--marketing">
+                    <input id="okayToEmail" type="checkbox">
+                    <label for="okayToEmail" class="checkbox">
+                        I want to join the newsletter
+                    </label>
+                </div>
+                <button class="form--submit">
+                    Sign up
+                </button>
+            </form>
+        </div>
+        <div id="rightdent">
+            <img src="https://wallpapercave.com/wp/wp2789220.jpg" alt="">
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <div class="row">
@@ -94,11 +127,12 @@
                         <p>10 AM TO 8 PM EVERY DAY</p>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </footer>
-    
+
 </body>
+
 </html>
 <script src="./1.js"></script>

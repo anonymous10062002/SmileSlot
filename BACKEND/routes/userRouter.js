@@ -221,7 +221,7 @@ userRouter.get('/dentist/appointments',authenticator,authorize(["dentist"]),asyn
 userRouter.post('/bookslot/:clinicID',authenticator,async(req,res)=>{
     // just pass the "date" in request body object
     // clinicID(_id) of clinic obj
-    const{clinicID} = req.params.clinicID;
+    const {clinicID} = req.params;
     const {userID,date}=req.body; 
     let d=new Date(date); 
     let time=d.getTime();  

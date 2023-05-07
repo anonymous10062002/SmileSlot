@@ -1,0 +1,114 @@
+#container {
+    width: 90%;
+    margin: auto;
+    margin-top: 100px;
+    /* border: 2px solid #090000; */
+    height: 500px;
+    margin-bottom: 100px;
+    display: flex;
+    padding: 50px;
+    border-radius: 30px;
+    background-image: linear-gradient(to right,  #00246B 0%, #8AB6F9, #00246B 100%);
+
+}
+
+#leftdent {
+    width: 40%;
+    margin: auto;
+    height: 100%;
+}
+
+#rightdent {
+    width: 40%;
+    margin: auto;
+    height: 100%;
+}
+
+#rightdent>img {
+    width: 100%;
+    margin-top: 17%;
+    border-radius: 10px;
+    border: 10px solid white;
+}
+
+.form {
+    /* background-color: white; */
+    background-image: linear-gradient(to right,  #CADCFC 0%, #CADCFC, #CADCFC 100%);
+    padding: 3.125em;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.75);
+}
+
+.signup {
+    color: rgb(10, 1, 1);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;
+    font-weight: bold;
+    font-size: x-large;
+    margin-bottom: 0.5em;
+    border: none;
+    padding: 10px;
+    /* background-color: #e4e4e6; */
+    color: #00246B;
+    border-radius: 10px;
+}
+
+.form--input {
+    width: 100%;
+    margin-bottom: 1.25em;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid rgb(10, 5, 5);
+    padding: 0.8em;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    color: #090000;
+}
+
+.form--input:focus {
+    border: 1px solid #639;
+    outline: none;
+}
+
+.form--marketing {
+    display: flex;
+    margin-bottom: 1.25em;
+    align-items: center;
+}
+
+.form--marketing>input {
+    margin-right: 0.625em;
+}
+
+.form--marketing>label {
+    color: rgb(16, 0, 0);
+}
+
+.checkbox,
+input[type="checkbox"] {
+    accent-color: #639;
+}
+
+.form--submit {
+    width: 50%;
+    padding: 0.625em;
+    border-radius: 5px;
+    color: rgb(231, 222, 222);
+    font-weight: 600;
+    /* background-color: #639; */
+    background-image: linear-gradient(to right,  #00246B 0%, #0a2f68, #00246B 100%);
+    border: 1px dashed #639;
+    cursor: pointer;
+}
+
+.form--submit:hover {
+    color: rgb(3, 0, 5);
+    background-image: linear-gradient(to right,  #8991a1 0%, #8AB6F9, #b2bbcd 100%);
+    border: 1px dashed #639;
+    cursor: pointer;
+    transition: 0.5s;
+}
