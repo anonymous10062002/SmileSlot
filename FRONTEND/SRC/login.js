@@ -73,8 +73,10 @@ buttonsignup.addEventListener("click", function () {
         console.log(data);
         if (data.msg == "login successfull") {
 
-            localStorage.setItem("token",data.token)
-            console.log(data.token)
+            console.log(data.user)
+            localStorage.setItem("dentaltoken",data.token)
+            localStorage.setItem("dentalusername",data.user.username)
+            localStorage.setItem("dentaluserID", data.user._id)
 
             if (data.user.role == "dentist") {
                 swal(`Welcome Dentist ${data.user.username} 🤝`, data.msg, "success");

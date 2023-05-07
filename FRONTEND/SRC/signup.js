@@ -103,7 +103,7 @@ buttonsignup.addEventListener("click", function () {
     }).then((res) => {
         return res.json();
     }).then((data) => {
-        console.log(data);
+    
         if (data.msg == "otp send to email please verify") {
             window.location.href = "./otp.html"
         } else {
