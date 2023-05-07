@@ -3,11 +3,11 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const { adminAuth } = require("../middleware/adminAuth");
-// const { authenticator } = require("../middleware/authenticator");
+
 
 const { UserModel } = require("../models/UserModel");
-// const { bookingModel } = require("../models/booking.model");
-const {ClinicModel}=require('../models/ClinicModel');
+
+const { ClinicModel } = require("../models/ClinicModel");
 
 const adminRouter = express.Router();
 
@@ -44,28 +44,13 @@ adminRouter.get("/getusers", adminAuth, async (req, res) => {
 });
 
 // get all clinics [clinic1,clinic2,clinic3.....]
-adminRouter.get('/allclinics',adminAuth,async(req,res)=>{
-    try {
-        const clinics=await ClinicModel.distinct("clinic");
-        res.status(200).send(clinics);
-    } 
-    catch (error) {
-       res.sendStatus(400); 
-    }
-})
-
-// adminRouter.post("/bookings", async (req, res) => {
-//   const { email, pass } = req.body;
-//   if (email === process.env.adminId && pass === process.env.adminPass) {
-//     try {
-//       const data = await bookingModel.find();
-//       res.send({ msg: data });
-//     } catch (err) {
-//       res.send({ err: err.message });
-//     }
-//   } else {
-//     res.send({ err: "You are not Authorized to go further." });
-//   }
-// });
+adminRouter.get("/allclinics", adminAuth, async (req, res) => {
+  try {
+    const clinics = await ClinicModel.distinct("clinic");
+    res.status(200).send(clinics);
+  } catch (error) {
+    res.sendStatus(400);
+  }
+});
 
 module.exports = { adminRouter };
