@@ -49,8 +49,7 @@ userRouter.post('/signup',async(req,res)=>{
             })
         }
     } catch (error) {
-        // console.log(error);
-        res.send({msg:"Oops something went wrong..! ",status:"error"})
+        res.status(400).send({"err":error.message}); 
     }
 })
 
@@ -76,8 +75,8 @@ userRouter.post("/verifyuser",async(req,res)=>{
             return res.send({err:"invalid otp",status:"error"})
         }
     }
-    catch(err){
-        res.send({err:"Oops something went wrong..! ",status:"error"})
+    catch(error){
+        res.status(400).send({"err":error.message}); 
     }
     
 })
@@ -108,12 +107,9 @@ userRouter.post('/login',async(req,res)=>{
             res.status(404).send({msg:'No user found with this eamil! Please register first.',status:"error"});
         }
     } catch (error) {
-        // console.log(error);
-        res.status(404).send({msg:'Something went wrong',status:"error"});
-        
+        res.status(400).send({"err":error.message}); 
     }
 })
-
 
 /// GET REFRESH TOKEN API
 userRouter.get("/refreshtoken",(req,res)=>{
@@ -131,8 +127,7 @@ userRouter.get("/refreshtoken",(req,res)=>{
             const token = jwt.sign({userID:userID}, 'hush',{expiresIn:"1d"});
             res.send({token:token,status:"success"});
         }
-        
-      });
+    });
 })
 
 // LOGOUT
@@ -145,9 +140,9 @@ userRouter.get('/logout',async(req,res)=>{
         } else {
           res.status(401).send("Unauthorised...!");
         }
-      }  catch (error) {
-        // console.log(error);
-        res.sendStatus(400);
+      }  
+    catch (error) {
+        res.status(400).send({"err":error.message}); 
     }
 })
 
@@ -158,7 +153,7 @@ userRouter.get('/allcities',authenticator,async(req,res)=>{
         res.status(200).send(cities);
     } 
     catch (error) {
-       res.sendStatus(400); 
+        res.status(400).send({"err":error.message}); 
     }
 })
 
@@ -170,7 +165,7 @@ userRouter.get('/clinic/:city',authenticator,async(req,res)=>{
         res.status(200).send(clinic);
     } 
     catch (error) {
-       res.sendStatus(400); 
+        res.status(400).send({"err":error.message}); 
     }
 })
 
@@ -178,12 +173,12 @@ userRouter.get('/clinic/:city',authenticator,async(req,res)=>{
 userRouter.post('/addclinic',authenticator,authorize(["dentist"]),async(req,res)=>{
     const {city,clinic,userID}=req.body;
     try {
-        const data=new ClinicModel({userID,city,clinic,booked:[]});
+        const data=new ClinicModel({userID,city,clinic,time:[]});
         await data.save();
         res.status(200).send({msg:"clinic added successfully"});
     } 
     catch (error) {
-       res.sendStatus(400); 
+        res.status(400).send({"err":error.message}); 
     }
 })
 
@@ -225,6 +220,8 @@ userRouter.get('/dentist/appointments',authenticator,authorize(["dentist"]),asyn
 //  BOOK APPOINTMENT API
 userRouter.post('/bookslot/:clinicID',authenticator,async(req,res)=>{
     // just pass the "date" in request body object
+    // clinicID(_id) of clinic obj
+    const{clinicID} = req.params.clinicID;
     const {userID,date}=req.body; 
     let d=new Date(date); 
     let time=d.getTime();  
