@@ -9,8 +9,7 @@ const {SlotModel}=require('../models/SlotModel');
 const {authorize}=require('../middleware/authorize');
 const {authenticator} = require('../middleware/authenticator');
 const {client}=require('../config/db');
-const {sendmail}=require("../services/mail")
-
+const {sendmail}=require("../services/mail");
 
 // SIGNUP API
 userRouter.post('/signup',async(req,res)=>{
@@ -147,10 +146,10 @@ userRouter.get('/logout',async(req,res)=>{
 userRouter.get('/allcities',authenticator,async(req,res)=>{
     try {
         const cities=await ClinicModel.distinct("city");
-        res.status(200).send(cities);
+        res.status(200).send({cities});
     } 
     catch(error){
-        res.status(400).send({ err: error.message });
+        res.status(400).send({err:error.message});
     }
 })
 
@@ -159,10 +158,10 @@ userRouter.get('/clinic/:city',authenticator,async(req,res)=>{
     const {city}=req.params;
     try {
         const clinic=await ClinicModel.find({city});
-        res.status(200).send(clinic);
+        res.status(200).send({clinic});
     } 
     catch(error){
-        res.status(400).send({ err: error.message });
+        res.status(400).send({err:error.message});
     }
 })
 
@@ -202,14 +201,14 @@ userRouter.get('/dentist/appointments',authenticator,authorize(["dentist"]),asyn
             ]
         );
         if(bookedslots.length){
-            res.status(200).send(bookedslots);
+            res.status(200).send({bookedslots});
         }
         else{
             res.status(404).send('No slots booked yet');
         }
     } 
     catch(error){
-        res.status(400).send({ err: error.message });
+        res.status(400).send({err:error.message });
     }
 })
 
@@ -235,7 +234,7 @@ userRouter.post('/bookslot/:clinicID',authenticator,async(req,res)=>{
         }
     } 
     catch(error){
-        res.status(400).send({ err: error.message });
+        res.status(400).send({err:error.message });
     }
 })
 
@@ -245,7 +244,7 @@ userRouter.get('/myappointments',authenticator,async(req,res)=>{
     try {
         let bookedslots=await SlotModel.find({userID});
         if(bookedslots.length){
-            res.status(200).send(bookedslots);
+            res.status(200).send({bookedslots});
         }
         else{
             res.status(404).send('No appointments booked yet');
