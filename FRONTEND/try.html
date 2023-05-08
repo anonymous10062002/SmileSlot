@@ -1,29 +1,68 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Checkbox Events</title>
 </head>
+<style>
+	#menu-btn {
+		background: none;
+		border: none;
+		font-size: 24px;
+		cursor: pointer;
+	}
+
+	#menu {
+		display: none;
+		position: absolute;
+		top: 40px;
+		left: 0;
+		width: 200px;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		background-color: #f9f9f9;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	}
+
+	#menu li {
+		margin: 0;
+		padding: 0;
+	}
+
+	#menu li a {
+		display: block;
+		padding: 10px;
+		text-decoration: none;
+		color: #333;
+	}
+
+	#menu li a:hover {
+		background-color: #ddd;
+	}
+</style>
+
 <body>
 
-	<input type="checkbox" id="myCheckbox" value="myValue">
-
-	<script>
-		var checkbox = document.getElementById("myCheckbox");
-		
-		// Add "check" event
-		checkbox.addEventListener('change', function() {
-			if (this.checked) {
-				console.log("Checkbox is checked");
-			}
-		});
-		
-		// Add "uncheck" event
-		checkbox.addEventListener('change', function() {
-			if (!this.checked) {
-				console.log("Checkbox is unchecked");
-			}
-		});
-	</script>
+	
 
 </body>
+
 </html>
+<script>
+	const menuBtn = document.getElementById('menu-btn');
+	const menu = document.getElementById('menu');
+
+	menuBtn.addEventListener('click', function () {
+		if (menu.style.display === 'block') {
+			menu.style.display = 'none';
+		} else {
+			menu.style.display = 'block';
+		}
+	});
+
+	menu.addEventListener('mouseleave', function () {
+		menu.style.display = 'none';
+	});
+
+</script>
