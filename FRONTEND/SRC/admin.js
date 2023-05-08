@@ -108,7 +108,7 @@ function showData(arr) {
           })
           .then((data) => {
             if (data.msg) {
-              swal(``, data.msg, "success");
+              swal(``, `${el.username} is blocked successfully`, "success");
               setTimeout(() => {
                 fetchingUserData();
               }, 2000);
