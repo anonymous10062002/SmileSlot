@@ -20,8 +20,38 @@ rightScroll.addEventListener('click', () => {
 });
 
 
-// ON load window make that video in header start again and get the video by video tag
 
 let usernamehere = document.getElementById("usernamehere")
 
 usernamehere.innerText = localStorage.getItem("dentalusername")
+
+let btnlogin = document.getElementById("btnlogin")
+let token = localStorage.getItem("dentaltoken")
+
+window.addEventListener("load",()=>{
+    if(token == undefined){
+      window.location.href = "../Public/index.html"
+    }
+})
+
+
+
+btnlogin.addEventListener("click", () => {
+  fetch(`http://localhost:4000/users/logout`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token
+    }
+  }).then((res) => res.json())
+    .then((res) => {
+      swal(``, res.msg, "success");
+      setTimeout(() => {
+        localStorage.removeItem("dentaltoken");
+        token = null;
+        window.location.href = "../Public/index.html";
+      }, 3000)
+    }).catch((error) => {
+      swal(``, error.message, "error")
+    })
+})
