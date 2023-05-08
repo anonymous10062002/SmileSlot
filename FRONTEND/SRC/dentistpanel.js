@@ -15,15 +15,8 @@ addclinic.addEventListener("click", (e) => {
     e.preventDefault()
 
     if (cityinput.value !== cityinputreconfirm.value) {
-        const module = document.getElementById('cart-module');
-        module.innerText = "Check the city again !!"
-        module.style.display = 'block';
-        module.style.borderRadius = '20px';
-        module.style.backgroundColor = "red";
-        module.style.textAlign = "center"
-        module.style.padding = "30px"
-        module.style.fontSize = "20px"
-        module.style.fontWeight = "900"
+
+        swal(``, "Check the city again !!", "error");
 
         setTimeout(() => {
             module.style.display = 'none';
@@ -52,22 +45,13 @@ addclinic.addEventListener("click", (e) => {
         console.log(data)
 
         if (data.msg = "clinic added successfully") {
-            const module = document.getElementById('cart-module');
-            module.innerText = "Clinic Added Successfully !!"
-            module.style.display = 'block';
-            module.style.borderRadius = '20px';
-            module.style.backgroundColor = "red";
-            module.style.textAlign = "center"
-            module.style.padding = "30px"
-            module.style.fontSize = "20px"
-            module.style.fontWeight = "900"
+            swal(``, data.msg, "success");
         }
 
         setTimeout(() => {
             const module = document.getElementById('cart-module');
             module.style.display = 'none';
         }, 3000);
-
 
     }).catch((err) => {
         console.log(err)
@@ -108,3 +92,36 @@ window.addEventListener("load", () => {
     })
 
 })
+
+
+
+let btnlogin = document.getElementById("btnlogin")
+
+window.addEventListener("load",()=>{
+    if(token == undefined){
+      window.location.href = "../Public/index.html"
+    }
+})
+
+
+
+btnlogin.addEventListener("click", () => {
+  fetch(`http://localhost:4000/users/logout`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token
+    }
+  }).then((res) => res.json())
+    .then((res) => {
+      swal(``, res.msg, "success");
+      setTimeout(() => {
+        localStorage.removeItem("dentaltoken");
+        token = null;
+        window.location.href = "../Public/index.html";
+      }, 3000)
+    }).catch((error) => {
+      swal(``, error.message, "error")
+    })
+})
+

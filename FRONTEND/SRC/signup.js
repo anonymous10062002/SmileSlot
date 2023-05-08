@@ -105,19 +105,13 @@ buttonsignup.addEventListener("click", function () {
     }).then((data) => {
     
         if (data.msg == "otp send to email please verify") {
-            window.location.href = "./otp.html"
+            swal(``, data.msg, "success");
+            setTimeout(()=>{
+                window.location.href = "./otp.html"
+            },2000)
         } else {
-            const module = document.getElementById('cart-module');
-            module.innerText = "Something went wrong !!"
-            module.style.display = 'block';
-            module.style.borderRadius = '20px';
-            module.style.backgroundColor = "red";
-
-            setTimeout(() => {
-                module.style.display = 'none';
-            }, 3000);
+            swal(``, "Something went wrong, Try again ||", "success");
         }
-
     }).catch((err) => {
         console.log(err);
     })
