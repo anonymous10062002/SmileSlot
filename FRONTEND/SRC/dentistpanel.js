@@ -74,3 +74,37 @@ addclinic.addEventListener("click", (e) => {
     })
 
 })
+
+
+let herebook = document.getElementById("herebook")
+
+window.addEventListener("load", () => {
+    fetch("http://localhost:4000/users/dentist/appointments", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    }).then((res) => {
+        return res.json();
+    }).then((data) => {
+
+        console.log(data)
+
+        data.bookedslots.forEach(obj => {
+            const timestamp = obj.time;
+            const date = new Date(timestamp);
+            const dateString = date.toDateString();
+            const timeString = date.toLocaleTimeString();
+            const userID = obj.userID;
+
+            herebook.innerHTML += `<div class="vpdentist">Time: ${dateString} ${timeString}, Token No : ${userID} 
+                <button class="canceldent">Cancel</button>
+            </div>`;
+        });
+
+    }).catch((err) => {
+        console.log(err);
+    })
+
+})

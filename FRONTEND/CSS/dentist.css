@@ -112,3 +112,54 @@ input[type="checkbox"] {
     cursor: pointer;
     transition: 0.5s;
 }
+
+#herebook {
+    width: 80%;
+    margin: auto;
+    border: 5px solid rgb(0, 0, 0);
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    background-color: #2e486e;
+}
+
+.vpdentist {
+    margin: auto;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 70%;
+    background-color: #8AB6F9;
+    color: rgb(14, 1, 1);
+    padding: 30px;
+    font-size: 20px;
+    border-radius: 30px;
+    font-weight: 700;
+}
+
+.vpdentist:hover {
+    background-color: #000000;
+    color: white;
+    cursor: pointer;
+}
+
+
+#textdent {
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+}
+
+.canceldent {
+    margin-left: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(174, 16, 16);
+    color: white;
+}
+
+.canceldent:hover {
+    color: #000000;
+    background-color: white;
+}

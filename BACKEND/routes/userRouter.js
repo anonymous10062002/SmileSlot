@@ -132,7 +132,7 @@ userRouter.get('/logout',async(req,res)=>{
     try {
         if (token) {
           await client.SADD("blackTokens", token);
-          res.status(200).send("Logged out successfully");
+          res.status(200).send({msg:"Logged out successfully"});
         } else {
           res.status(401).send("Unauthorised...!");
         }
@@ -204,7 +204,7 @@ userRouter.get('/dentist/appointments',authenticator,authorize(["dentist"]),asyn
             res.status(200).send({bookedslots});
         }
         else{
-            res.status(404).send('No slots booked yet');
+            res.status(404).send({msg:'No slots booked yet'});
         }
     } 
     catch(error){
