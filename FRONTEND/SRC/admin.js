@@ -71,7 +71,7 @@ let tbody = document.getElementById("tbody");
 
 function showData(arr) {
   tbody.innerHTML = null;
-  arr.forEach((el, index) => {
+  arr.forEach((el) => {
     let tr = document.createElement("tr");
 
     let username = document.createElement("td");
@@ -84,17 +84,44 @@ function showData(arr) {
     role.innerText = el.role;
 
     let Delete = document.createElement("td");
-    Delete.innerText = "BLOCK";
+    if (el.blocked) {
+      Delete.innerText = "BLOCKED";
+    } else {
+      Delete.innerText = "BLOCK";
+    }
     Delete.setAttribute("id", "delete");
 
     let verified = document.createElement("td");
     verified.innerHTML = `<p class="deleteClcBtn">${el.verified}</p>`;
 
-    Delete.addEventListener("click", function () {
-      arr.splice(index, 1);
-      showData(arr);
-    });
-    
+    if (!el.blocked) {
+      Delete.addEventListener("click", () => {
+        fetch(`http://localhost:4000/admin/blockuser/${el._id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            if (data.msg) {
+              swal(``, data.msg, "success");
+              setTimeout(() => {
+                fetchingUserData();
+              }, 2000);
+            } else {
+              swal(``, data.err, "error");
+            }
+          })
+          .catch((err) => {
+            swal(``, err.message, "error");
+          });
+      });
+    }
+
     tr.append(username, age, role, Delete, verified);
 
     tbody.append(tr);
@@ -103,7 +130,8 @@ function showData(arr) {
 
 function showClinicData(arr) {
   tbody.innerHTML = null;
-  arr.forEach((el, index) => {
+  arr.forEach((el) => {
+    console.log(el);
     let tr = document.createElement("tr");
 
     let city = document.createElement("td");
@@ -121,9 +149,30 @@ function showClinicData(arr) {
     let Delete = document.createElement("td");
     Delete.innerHTML = `<button class="deleteClinicBtn">DELETE</button>`;
 
-    Delete.addEventListener("click", function () {
-      arr.splice(index, 1);
-      showClinicData(arr);
+    Delete.addEventListener("click", () => {
+      fetch(`http://localhost:4000/admin/clinic/${el._id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          if (data.msg) {
+            swal(``, `${el.clinic} is deleted successfully`, "success");
+            setTimeout(() => {
+              fetchingClinicData();
+            }, 2000);
+          } else {
+            swal(``, data.err, "error");
+          }
+        })
+        .catch((err) => {
+          swal(``, err.message, "error");
+        });
     });
 
     tr.append(city, clinic, verified, ownerId, Delete);
@@ -136,20 +185,22 @@ logoutBtn.addEventListener("click", logoutAdmin);
 
 function logoutAdmin() {
   fetch(`http://localhost:4000/admin/logout`, {
-    method:"GET",
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`
-    }
-  }).then((res)=> res.json())
-  .then((res)=> {
-    swal(``, res.msg, "success");
-    setTimeout(() => {
-      localStorage.removeItem("admin_token");
-      token = null;
-      window.location.href="../Public/admlog.html";
-  }, 3000)
-  }).catch((error)=> {
-    swal(``, error.message, "error")
+      Authorization: `Bearer ${token}`,
+    },
   })
+    .then((res) => res.json())
+    .then((res) => {
+      swal(``, res.msg, "success");
+      setTimeout(() => {
+        localStorage.removeItem("admin_token");
+        token = null;
+        window.location.href = "../Public/admlog.html";
+      }, 3000);
+    })
+    .catch((error) => {
+      swal(``, error.message, "error");
+    });
 }
