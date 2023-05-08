@@ -10,9 +10,9 @@ const fetchCity = async () => {
   let cityData = await res.json();
    console.log(cityData)
   const citySelect = document.querySelector("#city");
-  cityData.map((city)=>{
+  cityData.cities.map((el)=>{
 
-    let option = new Option(city,city);
+    let option = new Option(el,el);
     citySelect.add(option,undefined)
     // citySelect.innerHTML = `
     // <option value="">Select City</option>
@@ -31,8 +31,9 @@ const fetchCity = async () => {
         Authorization: `Bearer ${token}`
       }
     });
-    const clinicData = await response.json();
-    //console.log("clini",clinicData)
+    let clinicData = await response.json();
+    clinicData=clinicData.clinic;
+    console.log("clini",clinicData)
 
 
 
