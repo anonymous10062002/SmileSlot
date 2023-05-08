@@ -107,7 +107,7 @@ buttonsignup.addEventListener("click", function () {
         if (data.msg == "otp send to email please verify") {
             swal(``, data.msg, "success");
             setTimeout(()=>{
-                window.location.href = "./otp.html"
+                window.location.href = "../Public/otp.html"
             },2000)
         } else {
             swal(``, "Something went wrong, Try again ||", "success");
