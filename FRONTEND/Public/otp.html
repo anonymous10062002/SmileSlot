@@ -112,11 +112,9 @@
                         window.location.href = "./login.html";
                     },3000)
 
-                } else {
-                    alert("OTP verification failed");
-                    alert(data.status);
+                }else if(data.status = "error") {
+                    swal('', "OTP is invalid", "error");
                 }
-                console.log(data)
             })
         }
     });

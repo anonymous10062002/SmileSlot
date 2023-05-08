@@ -100,7 +100,11 @@ userRouter.post('/login',async(req,res)=>{
             })
         }
         else{
-            res.status(404).send({err:'No user found with this eamil! Please register first.'});
+            if(user.blocked){
+                return res.status(403).send({err:'Oops! We find you suspicious, you are blocked'});
+            }else{
+                return res.status(404).send({err:'No user found with this eamil! Please register first.'});
+            }
         }
     }
     catch(error){

@@ -88,15 +88,11 @@ buttonsignup.addEventListener("click", function () {
           }, 3000);
         }
       } else {
-        const module = document.getElementById("cart-module");
-        module.innerText = "Verify Your Details !!";
-        module.style.display = "block";
-        module.style.borderRadius = "20px";
-        module.style.backgroundColor = "red";
-
-        setTimeout(() => {
-          module.style.display = "none";
-        }, 3000);
+          if(data.err == "Oops! We find you suspicious, you are blocked"){
+            swal(``, data.err, "error");
+          }else {
+            swal(``, "No user found with this eamil! Please register first.", "error");
+          }
       }
     })
     .catch((err) => {
