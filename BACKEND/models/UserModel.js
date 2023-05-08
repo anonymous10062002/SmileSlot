@@ -11,8 +11,11 @@ const userSchema= new mongoose.Schema({
         default: "user",
         enum: ["user","dentist","admin"]
     },
-    verified: Boolean
-
+    verified: Boolean,
+    blocked: {
+        type: Boolean,
+        default: false
+    }
 },{versionKey:false});
 
 const UserModel=mongoose.model('users',userSchema);

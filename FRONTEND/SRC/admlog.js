@@ -43,7 +43,7 @@ buttonsignup.addEventListener("click", function () {
           window.location.href = "../Public/admin.html";
         }, 3000);
       } else {
-        swal(``, data.err, "error");
+        swal(``, "Wrong Credentials, Please Try Again", "error");
        email.value = null; password.value = null;
       }
     })
@@ -52,3 +52,37 @@ buttonsignup.addEventListener("click", function () {
         email.value = null; password.value = null;
     });
 });
+
+
+function openBMIForm() {
+  document.getElementById("bmi-form").style.display = "block";
+}
+
+function closeBMIForm() {
+  document.getElementById("bmi-form").style.display = "none";
+}
+
+function calculateBMI() {
+  const weight = document.getElementById("weight").value;
+  const height = document.getElementById("height").value / 100;
+  const bmi = weight / (height * height);
+  if (bmi < 18.5) {
+      document.getElementById("bmi-result").textContent = bmi.toFixed(1) + " (Underweight)"
+      document.getElementById("bmi-result").style.color = "red";
+  }
+  else if (bmi >= 18.5 && bmi < 25) {
+      document.getElementById("bmi-result").textContent = bmi.toFixed(1) + " (Normal)";
+      document.getElementById("bmi-result").style.color = "green";
+  }
+  else if (bmi >= 25 && bmi < 30) {
+      document.getElementById("bmi-result").textContent = bmi.toFixed(1) + " (Overweight)";
+      document.getElementById("bmi-result").style.color = "orange";
+  }
+  else if (bmi >= 30) {
+      document.getElementById("bmi-result").textContent = bmi.toFixed(1) + " (Obese)";
+      document.getElementById("bmi-result").style.color = "red";
+  } else {
+      document.getElementById("bmi-result").textContent = bmi.toFixed(1);
+      document.getElementById("bmi-result").style.color = "black";
+  }
+}
