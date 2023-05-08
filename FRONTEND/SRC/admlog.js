@@ -43,7 +43,7 @@ buttonsignup.addEventListener("click", function () {
           window.location.href = "../Public/admin.html";
         }, 3000);
       } else {
-        swal(``, data.err, "error");
+        swal(``, "Wrong Credentials, Please Try Again", "error");
        email.value = null; password.value = null;
       }
     })
