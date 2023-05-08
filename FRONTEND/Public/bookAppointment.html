@@ -1,52 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Book Appointment</title>
-    <script
-      src="https://kit.fontawesome.com/3f69d0abd1.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="../CSS/bookAppointment.css" />
-    <link
-      rel="icon"
-      href="https://www.linkpicture.com/q/Smile-Slot-Logo.jpeg"
-    />
-  </head>
-  <body>
-    <!-- <------ NavBar --------->
-    <nav>
-      <div class="logodiv">
-        <img src="./Imagess/logo-removebg-preview.png" alt="" />
-      </div>
-      <div class="allitems">
-        <ul class="ultags">
-          <li><a href=""></a>TREATMENTS</li>
-          <li><a href=""></a>MEMBERSHIP PLANS</li>
-          <li><a href=""></a>PATIENT SAFETY</li>
-          <li><a href=""></a>OUR DOCTORS</li>
-          <li><a href=""></a>CAREERS</li>
-          <li><a href=""></a>FIND A CLINIC</li>
-          <li><a href=""></a>INST CALLBACK</li>
-        </ul>
-      </div>
 
-      <div class="leftsidenav">
-        <a href=""><button id="btnlogin">Login</button></a>
-      </div>
-    </nav>
-    <!-- <------ NavBar End Here ------->
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Appointment</title>
+  <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/2818/2818318.png" type="image/x-icon">
+  <script src="https://kit.fontawesome.com/3f69d0abd1.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../CSS/index.css">
+  <link rel="stylesheet" href="../CSS/bookAppointment.css" />
+  <link rel="icon" href="https://www.linkpicture.com/q/Smile-Slot-Logo.jpeg" />
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
 
-    <!-- Overlay Heading  -->
-    <div id="overlay">
-      <h1>APPOINTMENTS</h1>
+<body>
+  <!-- <------ NavBar --------->
+  <nav>
+    <div class="logodiv">
+     <a href="../Public/after.html"> <img id="imglogo" src="../Imagess/logo-removebg-preview.png" alt=""></a>
+    </div>
+    <div class="allitems">
+      <ul class="ultags">
+        <li><a href="../Public/bookAppointment.html"></a>TREATMENTS</li>
+        <li><a href="../Public/bookAppointment.html"></a>MEMBERSHIP PLANS</li>
+        <li><a href="../Public/bookAppointment.html"></a>PATIENT SAFETY</li>
+        <li><a href="../Public/bookAppointment.html"></a>OUR DOCTORS</li>
+        <li><a href="../Public/bookAppointment.html"></a>CAREERS</li>
+        <!-- <li id="usernamehere">Guest</li> -->
+      </ul>
     </div>
 
-    <div class="heading">
-      <h1>Book an Appointment at <span>Clove Clinic</span> Near Your</h1>
+    <div class="leftsidenav">
+
     </div>
+  </nav>
+  <!-- <------ NavBar End Here ------->
 
     <!-- <----- Form Starts here ------>
     <div class="input-form">
@@ -132,71 +121,267 @@
           </select>
       </div>
       <div id="personal-details">
-        <br />
-        <span>3</span><br /><br />
-          <label id="personal-det" for="">PERSONAL DETAIL</label><br /><br />
-          <input
-            style="padding: 8px; width: 90%"
-            type="text"
-            placeholder="Mobile Number*"
-            id="mobile-number"
-          /><br />
-          <input
-            style="padding: 8px; width: 90%"
-            type="text"
-            placeholder="Full Name*"
-            id="name"
-          /><br />
-          <input
-            style="padding: 8px; width: 90%"
-            type="text"
-            placeholder="Email Id"
-            id="email"
-          /><br />
-          <input
-            style="padding: 16px; width: 90%"
-            type="text"
-            placeholder="Type Text Message"
-            id="text-message"
-          /><br />
-          <input type="submit" value="SUBMIT" />
-        </form>
-      </div>
-    </div>
-    <!-- <------ Form End here ---------->
 
-    <div class="moreitem">
-      <div class="itemherediv">
-        <i class="fa-regular toothimage1 fa-hospital"></i><br /><br />
-        <p class="valuehome">1.5 Million +</p>
-        <span class="deschome">Happy Patients</span>
-      </div>
-      <div class="itemherediv">
-        <i class="fa-solid toothimage fa-tooth"></i><br /><br />
-        <p class="valuehome">35000 +</p>
-        <span class="deschome">Successful Ortho</span>
-      </div>
-      <div class="itemherediv">
-        <i class="fa-solid toothimage fa-pump-medical"></i><br /><br />
-        <p class="valuehome">50000 +</p>
-        <span class="deschome">Implants Placed</span>
-      </div>
-      <div class="itemherediv">
-        <i class="fa-solid toothimage fa-user-nurse"></i><br /><br />
-        <p class="valuehome">900 +</p>
-        <span class="deschome">Doctors Avail</span>
-      </div>
-      <div class="itemherediv">
-        <i class="fa-solid toothimage fa-house-medical"></i><br /><br />
-        <p class="valuehome">350 +</p>
-        <span class="deschome">Clinics Opens</span>
-      </div>
-      <div class="itemherediv">
-        <i class="fa-brands toothimage fa-google"></i><br /><br />
-        <p class="valuehome">2 Lakh +</p>
-        <span class="deschome">Google Reviews</span>
+  <!-- Overlay Heading  -->
+  <div id="overlay">
+    <h1>APPOINTMENTS</h1>
+  </div>
+
+  <div class="heading">
+    <h1>Book an Appointment at <span>Clove Clinic</span> Near Your</h1>
+  </div>
+
+  <!-- <----- Form Starts here ------>
+  <div class="input-form">
+    <div id="city-clinic">
+      <form action="">
+
+        <br />
+        <span>1</span><br /><br /><br><br><br>
+        <label for="">SELECT CITY</label><br />
+        <select name="city" id="city"></select><br /><br /><br><br>
+        <label for="">SELECT CLINIC</label><br />
+        <select name="clinic" id="clinic"></select>
+    </div>
+    <div id="date">
+      <br /><span>2</span><br /><br /><br><br><br>
+      <label for="">Month</label><br />
+      <select name="" id="month">
+        <option value="">Select Month</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+      </select>
+      <br /><br><br><br>
+      <label for="">Date</label><br />
+      <select name="" id="datee">
+        <option value="">Select Date</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">23</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+      </select><br /><br><br><br>
+      <label for="year">Year</label><br />
+      <select name="year" id="year">
+        <option value="">Select year</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+        <option value="2026">2026</option>
+        <option value="2027">2027</option>
+        <option value="2028">2028</option>
+        <option value="2029">2029</option>
+        <option value="2030">2030</option>
+        <option value="2031">2031</option>
+        <option value="2032">2032</option>
+      </select>
+    </div>
+    <div id="personal-details">
+      <br />
+      <span>3</span><br /><br />
+      <label id="personal-det" for="">PERSONAL DETAIL</label><br /><br />
+      <input style="padding: 8px; width: 90%" type="text" placeholder="Mobile Number*" id="mobile-number" /><br /><br>
+      <input style="padding: 8px; width: 90%" type="text" placeholder="Full Name*" id="name" /><br /><br>
+      <input style="padding: 8px; width: 90%" type="text" placeholder="Email Id" id="email" /><br /><br>
+      <input style="padding: 8px; width: 90%" type="text" placeholder="Type Text Message" id="text-message" /><br />
+      <input type="submit" id="submitme" value="SUBMIT" />
+      </form>
+    </div>
+  </div>
+  <!-- <------ Form End here ---------->
+  <br><br><br>
+  <div class="moreitem">
+    <div class="itemherediv">
+      <i class="fa-regular toothimage1 fa-hospital"></i><br /><br />
+      <p class="valuehome">1.5 Million +</p>
+      <span class="deschome">Happy Patients</span>
+    </div>
+    <div class="itemherediv">
+      <i class="fa-solid toothimage fa-tooth"></i><br /><br />
+      <p class="valuehome">35000 +</p>
+      <span class="deschome">Successful Ortho</span>
+    </div>
+    <div class="itemherediv">
+      <i class="fa-solid toothimage fa-pump-medical"></i><br /><br />
+      <p class="valuehome">50000 +</p>
+      <span class="deschome">Implants Placed</span>
+    </div>
+    <div class="itemherediv">
+      <i class="fa-solid toothimage fa-user-nurse"></i><br /><br />
+      <p class="valuehome">900 +</p>
+      <span class="deschome">Doctors Avail</span>
+    </div>
+    <div class="itemherediv">
+      <i class="fa-solid toothimage fa-house-medical"></i><br /><br />
+      <p class="valuehome">350 +</p>
+      <span class="deschome">Clinics Opens</span>
+    </div>
+    <div class="itemherediv">
+      <i class="fa-brands toothimage fa-google"></i><br /><br />
+      <p class="valuehome">2 Lakh +</p>
+      <span class="deschome">Google Reviews</span>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <footer class="nb-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="about">
+           <a href="../Public/after.html"> <img src="images/logo.png" class="img-responsive center-block" alt=""></a>
+            <p>Thank you for choosing SMILESLOT as your trusted dental care provider. Our mission is to help you achieve
+              optimal oral health and a beautiful smile through personalized treatment plans tailored to your individual
+              needs
+            </p>
+
+            <div class="social-media">
+              <ul class="list-inline">
+                <li><a href="#" title=""><i class="fa fa-facebook"></i></a>
+                </li>
+                <li><a href="#" title=""><i class="fa fa-twitter"></i></a>
+                </li>
+                <li><a href="#" title=""><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#" title=""><i class="fa fa-linkedin"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="footervp">
+          <div class="col-md-3 col-sm-6">
+            <div class="footer-info-single">
+              <h2 class="title">Help Center</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> How to Pay</a></li>
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> FAQ's</a></li>
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> Sitemap</a></li>
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> Delivery Info</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="footer-info-single">
+              <h2 class="title">Customer information</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> About Us</a></li>
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> FAQ's</a></li>
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> Sell Your Items</a></li>
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> Contact Us</a></li>
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> RSS</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="footer-info-single">
+              <h2 class="title">Security & privacy</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> Terms Of Use</a></li>
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> Privacy Policy</a></li>
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> Return / Refund Policy</a></li>
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> Store Locations</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="footer-info-single">
+              <h2 class="title">DENTIST</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> Dental Awareness</a></li>
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> Dental Education</a></li>
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> Leasing</a></li>
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> Refund Policy</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="footer-info-single">
+              <h2 class="title">USEFUL LINKS</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> Blogs</a></li>
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> Scientific Journal</a></li>
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> News & Media</a></li>
+                <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> Coupon Policy</a></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+          <div class="footer-info-single">
+            <!-- <h2 class="title">Payment</h2> -->
+            <p class="pnormfoot" style="color: black; font-size: 18px;">Contact us today to schedule your next
+              appointment.</p>
+
+          </div>
+        </div>
       </div>
     </div>
-  </body>
-  <script src="../SRC/bookAppointment.js"></script>
+
+    <div class="subscribeemail">
+      <p id="lablefooter" for="">Enter Your Email : </p>
+      <input type="email" id="inpufoot" required><br>
+      <button id="footersubmitbtn">SUBMIT</button>
+    </div>
+
+    <section class="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <p class="parafoot">Copyright © 2017. Your Company.</p>
+          </div>
+          <div class="col-sm-6"></div>
+        </div>
+      </div>
+    </section>
+  </footer>
+</body>
+<script src="../SRC/bookAppointment.js"></script>
+
 </html>

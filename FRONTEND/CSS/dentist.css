@@ -116,7 +116,7 @@ input[type="checkbox"] {
 #herebook {
     width: 80%;
     margin: auto;
-    border: 5px solid rgb(0, 0, 0);
+    /* border: 5px solid rgb(0, 0, 0); */
     padding: 20px;
     border-radius: 20px;
     margin-bottom: 20px;
