@@ -30,6 +30,7 @@ video {
     object-fit: cover;
 }
 
+
 .btnleft {
     width: auto;
     position: absolute;
@@ -74,7 +75,8 @@ nav {
 
 .ultags {
     display: flex;
-
+    align-items: center;
+    margin-top: 5px;
 }
 
 .ultags li {
@@ -96,7 +98,9 @@ nav {
 
 .leftsidenav {
     align-items: center;
-    margin-top: 12px;
+    margin-top: 10px;
+    height: 100%;
+    /* border: 1px solid black; */
 }
 
 

@@ -109,6 +109,13 @@ const appointmentData = async (
   );
 
   let result = await response.json();
-  alert(result.msg);
-  console.log(result);
+  if(result.msg == "Appointment booked successfully"){
+    swal(``, result.msg, "success");
+    setTimeout(()=>{
+      window.location.href = "../Public/thakyou.html"
+    },2000)
+  }else{
+    swal(``, result.msg, "error");
+  }
+  // console.log(result);
 };

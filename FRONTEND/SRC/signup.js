@@ -110,7 +110,7 @@ buttonsignup.addEventListener("click", function () {
                 window.location.href = "../Public/otp.html"
             },2000)
         } else {
-            swal(``, "Something went wrong, Try again ||", "success");
+            swal(``, "Something went wrong, Try again ||", "error");
         }
     }).catch((err) => {
         console.log(err);
