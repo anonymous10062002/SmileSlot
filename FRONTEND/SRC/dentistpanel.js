@@ -11,9 +11,7 @@ let token = localStorage.getItem("dentaltoken")
 let userID = localStorage.getItem("dentaluserID")
 
 addclinic.addEventListener("click", (e) => {
-    console.log(token)
     e.preventDefault()
-
     if (cityinput.value !== cityinputreconfirm.value) {
 
         swal(``, "Check the city again !!", "error");
@@ -29,9 +27,6 @@ addclinic.addEventListener("click", (e) => {
         city: cityinput.value,
         clinic: clinicinput.value,
     }
-
-    console.log
-
     fetch("http://localhost:4000/users/addclinic", {
         method: "POST",
         body: JSON.stringify(payload),
@@ -42,23 +37,21 @@ addclinic.addEventListener("click", (e) => {
     }).then((res) => {
         return res.json();
     }).then((data) => {
-        console.log(data)
-
-        if (data.msg = "clinic added successfully") {
+        if(data.msg){
             swal(``, data.msg, "success");
+            cityinput.value=null;
+            clinicinput.value=null;
+            cityinputreconfirm.value=null;
+        }
+        else{
+            swal(``, data.err, "error");
         }
 
-        setTimeout(() => {
-            const module = document.getElementById('cart-module');
-            module.style.display = 'none';
-        }, 3000);
-
     }).catch((err) => {
-        console.log(err)
+        swal(``, err, "error");
     })
 
 })
-
 
 let herebook = document.getElementById("herebook")
 

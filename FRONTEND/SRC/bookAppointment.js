@@ -8,7 +8,6 @@ const fetchCity = async () => {
     },
   });
   let cityData = await res.json();
-  console.log(cityData);
   const citySelect = document.querySelector("#city");
   cityData.cities.map((el) => {
     let option = new Option(el, el);
@@ -109,13 +108,12 @@ const appointmentData = async (
   );
 
   let result = await response.json();
-  if(result.msg == "Appointment booked successfully"){
+  if(result.msg){
     swal(``, result.msg, "success");
     setTimeout(()=>{
-      window.location.href = "../Public/thakyou.html"
+      window.location.href = "../Public/thankyou.html"
     },2000)
   }else{
-    swal(``, result.msg, "error");
+    swal(``, result.err, "error");
   }
-  // console.log(result);
 };

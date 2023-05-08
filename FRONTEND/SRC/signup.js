@@ -32,23 +32,16 @@ function calculateBMI() {
     }
 }
 
-
-
-
 //  Sign up process 
-
 let buttonsignup = document.getElementById("buttonsignup");
-
 let Username = document.getElementById("Username");
 let email = document.getElementById("email");
 let age = document.getElementById("age");
 let mobile = document.getElementById("mobile");
 let password = document.getElementById("password");
-
 let checkbox = document.getElementById("dentistinput")
 
 // handle click event on checkbox
-
 let role = "user"
 checkbox.addEventListener('change', function () {
     if (this.checked) {
@@ -61,9 +54,6 @@ checkbox.addEventListener('change', function () {
         role = "user"
     }
 });
-
-
-
 
 let alertempty = document.getElementById("alertempty")
 buttonsignup.addEventListener("click", function () {
@@ -92,7 +82,6 @@ buttonsignup.addEventListener("click", function () {
         password: password.value,
         role: role
     }
-    console.log(payload);
 
     fetch("http://localhost:4000/users/signup", {
         method: "POST",
@@ -100,20 +89,24 @@ buttonsignup.addEventListener("click", function () {
         headers: {
             "Content-Type": "application/json"
         }
+        
     }).then((res) => {
+
         return res.json();
+
     }).then((data) => {
     
-        if (data.msg == "otp send to email please verify") {
-            swal(``, data.msg, "success");
+        if(data.msg){
+            swal(``, `OTP send to ${email.value}, please verify`, "success");
             setTimeout(()=>{
                 window.location.href = "../Public/otp.html"
-            },2000)
+            },3000)
         } else {
-            swal(``, "Something went wrong, Try again ||", "error");
+            swal(``,data.err, "error");
         }
+
     }).catch((err) => {
-        console.log(err);
+        swal(``,err, "error");
     })
 
 });

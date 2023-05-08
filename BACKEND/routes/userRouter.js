@@ -26,13 +26,12 @@ userRouter.post('/signup',async(req,res)=>{
             }
         }
         if(isFound){
-            res.status(403).send({mag:'User already exist..!',status:"error"});
+            res.status(403).send({err:'User already exist..!',status:"error"});
         }
         else{
             bcrypt.hash(password,4,async(err,hash)=>{
                 if(err){
-                    console.log(err);
-                    res.status(400).send({msg:'Oops something went wrong..!',status:"error"});
+                    res.status(400).send({err:'Oops something went wrong..!',status:"error"});
                 }
                 else{
                     let user=new UserModel({username,email,password:hash,mobile,age,verified:false, role});
@@ -52,11 +51,9 @@ userRouter.post('/signup',async(req,res)=>{
 /// VERIFY EMAIL API
 userRouter.post("/verifyuser",async(req,res)=>{
     const {email,otp}=req.body;
-
     if(email==undefined||otp==undefined){
         return res.send({err:"enter full details",status:"error"});
     }
-
     try{
         let validotp=await client.get(email+"otp")
         let user=await UserModel.findOne({email});
@@ -81,30 +78,23 @@ userRouter.post('/login',async(req,res)=>{
     const {email,password}=req.body;
     try {
         let user=await UserModel.findOne({email});
-        if(user?.verified){
+        if(user){
             if(user.blocked){
                 return res.status(403).send({err:'Oops! We find you suspicious, you are blocked'});
             }
             bcrypt.compare(password,user.password,(err,result)=>{
                 if(result){
-                    //let token=jwt.sign({userID: user._id,username: user.username,email: user.email,mobile: user.mobile,age: user.age, role: user.role},process.env.normalKey,{expiresIn:"1d"});
                     let token=jwt.sign({userID: user._id},process.env.normalKey,{expiresIn:"1d"});
                     let refresh_token=jwt.sign({userID: user._id},process.env.refreshKey,{expiresIn:"30d"});
-
-                    res.status(200).send({msg:"login successfull",token:token,user});
+                    res.status(200).send({msg:"Login Successfull",token:token,user});
                 }
                 else{
-                    console.log(err);
-                    res.status(400).send({err:'Wrong credentials..!'});
+                    res.status(400).send({err:'Wrong Password'});
                 }
             })
         }
         else{
-            if(user.blocked){
-                return res.status(403).send({err:'Oops! We find you suspicious, you are blocked'});
-            }else{
-                return res.status(404).send({err:'No user found with this eamil! Please register first.'});
-            }
+            return res.status(404).send({err:'No user found with this E-mail. Please register first.'});
         }
     }
     catch(error){
@@ -139,7 +129,7 @@ userRouter.get('/logout',async(req,res)=>{
           await client.SADD("blackTokens", token);
           res.status(200).send({msg:"Logged out successfully"});
         } else {
-          res.status(401).send("Unauthorised...!");
+          res.status(401).send({err:"Unauthorized"});
         }
       }  
       catch(error){
@@ -219,8 +209,6 @@ userRouter.get('/dentist/appointments',authenticator,authorize(["dentist"]),asyn
 
 //  BOOK APPOINTMENT API
 userRouter.post('/bookslot/:clinicID',authenticator,async(req,res)=>{
-    // just pass the "date" in request body object
-    // clinicID(_id) of clinic obj
     const {clinicID} = req.params;
     const {userID,date}=req.body; 
     let d=new Date(date); 
@@ -229,7 +217,7 @@ userRouter.post('/bookslot/:clinicID',authenticator,async(req,res)=>{
         const data=await ClinicModel.findOne({_id:clinicID});
         const isBooked=data.time.includes(time);
         if(isBooked){
-            res.status(400).send({msg:"Already booked! Choose different time slot"});
+            res.status(400).send({err:"Already booked! Choose different time slot"});
         }
         else{
             await ClinicModel.findOneAndUpdate({_id:clinicID},{$push:{time:time}});

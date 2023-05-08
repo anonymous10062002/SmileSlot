@@ -69,9 +69,7 @@ buttonsignup.addEventListener("click", function () {
       return res.json();
     })
     .then((data) => {
-      console.log(data);
-      if (data.msg == "login successfull") {
-        console.log(data.user);
+      if(data.msg){
         localStorage.setItem("dentaltoken", data.token);
         localStorage.setItem("dentalusername", data.user.username);
         localStorage.setItem("dentaluserID", data.user._id);
@@ -91,7 +89,7 @@ buttonsignup.addEventListener("click", function () {
           if(data.err == "Oops! We find you suspicious, you are blocked"){
             swal(``, data.err, "error");
           }else {
-            swal(``, "No user found with this eamil! Please register first.", "error");
+            swal(``, data.err, "error");
           }
       }
     })
