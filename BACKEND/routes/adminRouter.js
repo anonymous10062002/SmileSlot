@@ -28,7 +28,7 @@ adminRouter.post("/login", async(req,res)=>{
 });
 
 // GET ALL USERS API
-adminRouter.get("/getusers", adminAuth, async (req, res) => {
+adminRouter.get("/getusers",adminAuth,async(req,res)=>{
   try{
     const data = await UserModel.find();
     if (data.length) {
@@ -44,6 +44,18 @@ adminRouter.get("/getusers", adminAuth, async (req, res) => {
   }
 });
 
+// BLOCK-USER API
+adminRouter.patch("/blockuser/:userID",adminAuth,async(req,res)=>{
+  const userID=req.params.userID;
+  try{
+    await UserModel.findByIdAndUpdate(userID,{verified:false,blocked:true});
+    res.status(200).send({msg:"User blocked successfully"});
+  } 
+  catch(error){
+    res.status(400).send({err:error.message});
+  }
+})
+
 // GET ALL CLINICS [clinic1,clinic2,clinic3.....]
 
 adminRouter.get('/allclinics',adminAuth,async(req,res)=>{
@@ -57,7 +69,7 @@ adminRouter.get('/allclinics',adminAuth,async(req,res)=>{
 })
 
 // GET ALL APPOINTMENTS [appointment1,appointment2,appointment3...]
-adminRouter.get('/allappointments', adminAuth, async (req, res) => {
+adminRouter.get('/allappointments',adminAuth,async (req,res) => {
   try {
     const appointments = await SlotModel.find();
     if (appointments.length) {

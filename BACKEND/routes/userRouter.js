@@ -11,7 +11,7 @@ const {authenticator} = require('../middleware/authenticator');
 const {client}=require('../config/db');
 const {sendmail}=require("../services/mail");
 
-// SIGNUP API
+// SIGNUP USER API
 userRouter.post('/signup',async(req,res)=>{
     const {username,email,password,mobile,age, role}=req.body;
     try {
@@ -76,30 +76,31 @@ userRouter.post("/verifyuser",async(req,res)=>{
     }
 })
 
-// LOGIN API
+// LOGIN USER API
 userRouter.post('/login',async(req,res)=>{
     const {email,password}=req.body;
     try {
         let user=await UserModel.findOne({email});
-        // console.log(user?.verified)
         if(user?.verified){
+            if(user.blocked){
+                return res.status(403).send({err:'Oops! We find you suspicious, you are blocked'});
+            }
             bcrypt.compare(password,user.password,(err,result)=>{
                 if(result){
-
                     //let token=jwt.sign({userID: user._id,username: user.username,email: user.email,mobile: user.mobile,age: user.age, role: user.role},process.env.normalKey,{expiresIn:"1d"});
                     let token=jwt.sign({userID: user._id},process.env.normalKey,{expiresIn:"1d"});
                     let refresh_token=jwt.sign({userID: user._id},process.env.refreshKey,{expiresIn:"30d"});
 
-                    res.status(200).send({msg:"login successfull",token:token,status:"success",user});
+                    res.status(200).send({msg:"login successfull",token:token,user});
                 }
                 else{
                     console.log(err);
-                    res.status(400).send({msg:'Wrong credentials..!',status:"error"});
+                    res.status(400).send({err:'Wrong credentials..!'});
                 }
             })
         }
         else{
-            res.status(404).send({msg:'No user found with this eamil! Please register first.',status:"error"});
+            res.status(404).send({err:'No user found with this eamil! Please register first.'});
         }
     }
     catch(error){
@@ -126,19 +127,19 @@ userRouter.get("/refreshtoken",(req,res)=>{
     });
 })
 
-// LOGOUT
+// LOGOUT USER API
 userRouter.get('/logout',async(req,res)=>{
     let token = req.headers.authorization;
     try {
         if (token) {
           await client.SADD("blackTokens", token);
-          res.status(200).send("Logged out successfully");
+          res.status(200).send({msg:"Logged out successfully"});;
         } else {
           res.status(401).send("Unauthorised...!");
         }
       }  
       catch(error){
-        res.status(400).send({ err: error.message });
+        res.status(400).send({err:error.message });
     }
 })
 
