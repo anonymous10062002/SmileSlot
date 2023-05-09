@@ -15,6 +15,10 @@
 ![Sign Up Page](https://user-images.githubusercontent.com/114407593/237026165-7deecadc-da19-458d-889a-646c175c3463.png)
 
                     Sign Up Page [https://dull-cyan-hatchling-yoke.cyclic.app/users/signup]
+                    
+![Book Appointment Page](https://user-images.githubusercontent.com/114407593/237038119-382e1e90-f83c-4cd5-a92a-6c707783610f.png)
+
+                  Book Appointment [https://dull-cyan-hatchling-yoke.cyclic.app/users/bookslot/:clinicId]
 
 ![Dentist Panel](https://user-images.githubusercontent.com/114407593/237027037-5db721ec-2b41-4e20-97cb-08befdaa65b9.png)
                                                          
