@@ -37,7 +37,7 @@ window.addEventListener("load",()=>{
 
 
 btnlogin.addEventListener("click", () => {
-  fetch(`http://localhost:4000/users/logout`, {
+  fetch(`https://dull-cyan-hatchling-yoke.cyclic.app/users/logout`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

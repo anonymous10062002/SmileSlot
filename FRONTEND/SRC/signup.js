@@ -83,7 +83,7 @@ buttonsignup.addEventListener("click", function () {
         role: role
     }
 
-    fetch("http://localhost:4000/users/signup", {
+    fetch(`https://dull-cyan-hatchling-yoke.cyclic.app/users/signup`, {
         method: "POST",
         body: JSON.stringify(payload),
         headers: {

@@ -25,7 +25,7 @@ function fetchingClinicData() {
   col5.innerHTML = "DELETE";
   col5.style = "text-align:center";
 
-  fetch(`http://localhost:4000/admin/allclinics`, {
+  fetch(`https://dull-cyan-hatchling-yoke.cyclic.app/admin/allclinics`, {
     method: "GET",
     headers: {
       "Content-type": "application/json",
@@ -50,7 +50,7 @@ function fetchingUserData() {
   col5.innerText = "Verified";
   col5.style = "text-align:center";
 
-  fetch(`http://localhost:4000/admin/getusers`, {
+  fetch(`https://dull-cyan-hatchling-yoke.cyclic.app/admin/getusers`, {
     method: "GET",
     headers: {
       "Content-type": "application/json",
@@ -96,7 +96,7 @@ function showData(arr) {
 
     if (!el.blocked) {
       Delete.addEventListener("click", () => {
-        fetch(`http://localhost:4000/admin/blockuser/${el._id}`, {
+        fetch(`https://dull-cyan-hatchling-yoke.cyclic.app/admin/blockuser/${el._id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -150,7 +150,7 @@ function showClinicData(arr) {
     Delete.innerHTML = `<button class="deleteClinicBtn">DELETE</button>`;
 
     Delete.addEventListener("click", () => {
-      fetch(`http://localhost:4000/admin/clinic/${el._id}`, {
+      fetch(`https://dull-cyan-hatchling-yoke.cyclic.app/admin/clinic/${el._id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -184,7 +184,7 @@ function showClinicData(arr) {
 logoutBtn.addEventListener("click", logoutAdmin);
 
 function logoutAdmin() {
-  fetch(`http://localhost:4000/admin/logout`, {
+  fetch(`https://dull-cyan-hatchling-yoke.cyclic.app/admin/logout`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

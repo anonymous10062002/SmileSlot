@@ -1,6 +1,6 @@
 const token = localStorage.getItem("dentaltoken");
 const fetchCity = async () => {
-  let res = await fetch("http://localhost:4000/users/allcities", {
+  let res = await fetch(`https://dull-cyan-hatchling-yoke.cyclic.app/users/allcities`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -22,7 +22,7 @@ const fetchCity = async () => {
   });
 
   const fetchClinic = async (city) => {
-    const response = await fetch(`http://localhost:4000/users/clinic/${city}`, {
+    const response = await fetch(`https://dull-cyan-hatchling-yoke.cyclic.app/users/clinic/${city}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -96,7 +96,7 @@ const appointmentData = async (
   //console.log(clinic_id,appointData)
 
   const response = await fetch(
-    `http://localhost:4000/users/bookslot/${clinic_id}`,
+    `https://dull-cyan-hatchling-yoke.cyclic.app/users/bookslot/${clinic_id}`,
     {
       method: "POST",
       headers: {

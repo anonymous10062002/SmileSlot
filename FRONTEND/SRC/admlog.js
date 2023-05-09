@@ -22,7 +22,7 @@ buttonsignup.addEventListener("click", function () {
     password: password.value,
   };
   console.log(payload);
-  fetch("http://localhost:4000/admin/login", {
+  fetch(`https://dull-cyan-hatchling-yoke.cyclic.app/admin/login`, {
     method: "POST",
     body: JSON.stringify(payload),
     headers: {

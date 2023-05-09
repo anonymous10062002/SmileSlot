@@ -49,7 +49,7 @@ verifyotp.addEventListener("click", (e) => {
             otp: otp
         }
 
-        fetch("http://localhost:4000/users/verifyuser", {
+        fetch(`https://dull-cyan-hatchling-yoke.cyclic.app/users/verifyuser`, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {

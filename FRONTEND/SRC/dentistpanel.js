@@ -27,7 +27,7 @@ addclinic.addEventListener("click", (e) => {
         city: cityinput.value,
         clinic: clinicinput.value,
     }
-    fetch("http://localhost:4000/users/addclinic", {
+    fetch(`https://dull-cyan-hatchling-yoke.cyclic.app/users/addclinic`, {
         method: "POST",
         body: JSON.stringify(payload),
         headers: {
@@ -56,7 +56,7 @@ addclinic.addEventListener("click", (e) => {
 let herebook = document.getElementById("herebook")
 
 window.addEventListener("load", () => {
-    fetch("http://localhost:4000/users/dentist/appointments", {
+    fetch(`https://dull-cyan-hatchling-yoke.cyclic.app/users/dentist/appointments`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -99,7 +99,7 @@ window.addEventListener("load",()=>{
 
 
 btnlogin.addEventListener("click", () => {
-  fetch(`http://localhost:4000/users/logout`, {
+  fetch(`https://dull-cyan-hatchling-yoke.cyclic.app/users/logout`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

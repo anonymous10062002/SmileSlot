@@ -58,7 +58,7 @@ buttonsignup.addEventListener("click", function () {
     password: password.value,
   };
   console.log(payload);
-  fetch("http://localhost:4000/users/login", {
+  fetch(`https://dull-cyan-hatchling-yoke.cyclic.app/users/login`, {
     method: "POST",
     body: JSON.stringify(payload),
     headers: {
