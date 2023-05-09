@@ -14,12 +14,12 @@
                                                          
 ![Sign Up Page](https://user-images.githubusercontent.com/114407593/237026165-7deecadc-da19-458d-889a-646c175c3463.png)
 
-                                                         Sign Up Page [https://dull-cyan-hatchling-yoke.cyclic.app/users/signup]
+                    Sign Up Page [https://dull-cyan-hatchling-yoke.cyclic.app/users/signup]
 
 ![Dentist Panel](https://user-images.githubusercontent.com/114407593/237027037-5db721ec-2b41-4e20-97cb-08befdaa65b9.png)
                                                          
-                                                         Dentist Panel [https://dull-cyan-hatchling-yoke.cyclic.app/users/addclinic]
+                    Dentist Panel [https://dull-cyan-hatchling-yoke.cyclic.app/users/addclinic]
 
 ![Dentist Appointments](https://user-images.githubusercontent.com/114407593/237027635-ec99bfe6-c6d8-4d76-afe6-1efbed88496a.png)
 
-                                             Dentist Appointments on Dentist Panel [https://dull-cyan-hatchling-yoke.cyclic.app/users/dentist/appointments]
+                    Dentist Appointments on Dentist Panel [https://dull-cyan-hatchling-yoke.cyclic.app/users/dentist/appointments]
