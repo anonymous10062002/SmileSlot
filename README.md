@@ -30,9 +30,9 @@
 
 ![Users Data Admin Portal](https://github.com/anonymous10062002/mountainous-behavior-4917/assets/114407593/9204f4bc-98c6-490d-946d-79983ddf0a5a)
 
-                  Admin Portal to view & block users [https://dull-cyan-hatchling-yoke.cyclic.app/admin/getusers]
+              Admin Portal to view & block users [https://dull-cyan-hatchling-yoke.cyclic.app/admin/getusers]
                   
 ![Clinic Data Admin Portal](https://github.com/anonymous10062002/mountainous-behavior-4917/assets/114407593/cf64f605-2177-44e9-9e42-2649f92a080b)
 
-                  Admin Portal to view & delete clinics [https://dull-cyan-hatchling-yoke.cyclic.app/admin/allclinics]
+             Admin Portal to view & delete clinics [https://dull-cyan-hatchling-yoke.cyclic.app/admin/allclinics]
 
