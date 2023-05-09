@@ -30,7 +30,7 @@ let token = localStorage.getItem("dentaltoken")
 
 window.addEventListener("load",()=>{
     if(token == undefined){
-      window.location.href = "../Public/index.html"
+      window.location.href = "../index.html"
     }
 })
 
@@ -49,7 +49,7 @@ btnlogin.addEventListener("click", () => {
       setTimeout(() => {
         localStorage.removeItem("dentaltoken");
         token = null;
-        window.location.href = "../Public/index.html";
+        window.location.href = "../index.html";
       }, 3000)
     }).catch((error) => {
       swal(``, error.message, "error")

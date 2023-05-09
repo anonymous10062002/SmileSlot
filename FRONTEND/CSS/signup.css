@@ -231,8 +231,6 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
-
 /* BMI part styling */
 
 .somesignup {
@@ -382,8 +380,7 @@ body {
 }
 
 #dentistinput {
-    margin-left: 10%;
-
+    margin-left: 2%;
 }
 
 
@@ -444,15 +441,6 @@ body {
 .buttonadmin:active {
     filter: brightness(.8);
 }
-
-
-
-
-
-
-
-
-
 
 @media only screen and (min-width: 412px) and (max-width: 991px) {
     /* CSS styles for devices with screen width between 576px and 991px */
