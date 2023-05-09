@@ -22,4 +22,4 @@
 
 ![Dentist Appointments](https://user-images.githubusercontent.com/114407593/237027635-ec99bfe6-c6d8-4d76-afe6-1efbed88496a.png)
 
-                    Dentist Appointments on Dentist Panel [https://dull-cyan-hatchling-yoke.cyclic.app/users/dentist/appointments]
+                    Dentist Appointments [https://dull-cyan-hatchling-yoke.cyclic.app/users/dentist/appointments]
