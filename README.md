@@ -2,7 +2,7 @@
 
 ![smileslot_flowchart](https://user-images.githubusercontent.com/114407593/237023316-5c3108eb-dbb9-40a7-83cd-111cefae1651.png)
 
- Work-Flow of our system
+                             Work-Flow of our system
 
 ![Index Page](https://user-images.githubusercontent.com/114407593/237024643-b5ee418e-c884-4058-a035-05765b664a9a.png)
 
