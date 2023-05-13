@@ -1,18 +1,20 @@
 
 interface Clinic {
 name: string;
-price: number;
+city: string;
 }
 
 interface Dentists {
 name: string;
-speciality: string;
-availableTime: Date[];
+email: string;
+mobile: number;
+age: number;
+password: string;
 }
 
 interface Appointments {
-dentist: string;
-tooth: Dentist;
+userID: string;
+ClinicID: string;
 time: Date;
 }
 
